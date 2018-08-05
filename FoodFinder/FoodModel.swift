@@ -42,11 +42,17 @@ class Parser{
                 }
                 
                 //Cuisine
-                var cuisine = ""
+                var cuisine = "Cuisine:"
                 if let categoryList = currentBusiness.value(forKey: "categories") as? Array<Dictionary<String, String>>{
                     for category in categoryList{
                         if let currCategory = category["title"]{
-                            cuisine = cuisine + " " + currCategory
+                            if(cuisine == "Cuisine:"){
+                                cuisine = cuisine + " " + currCategory
+                            }
+                            else{
+                                cuisine = cuisine + " ," + currCategory
+                            }
+                            
                         }
                         
                     }
@@ -60,8 +66,8 @@ class Parser{
                 
                 //Coordinates
                 if let coordinates = currentBusiness.value(forKey: "coordinates") as? Dictionary<String, Double>{
-                    let lat = coordinates["latitude"]
-                    let long = coordinates["longitude"]
+                    let lat = coordinates[LATITUDE]
+                    let long = coordinates[LONGITUDE]
                     if(lat != nil && long != nil){
                         food.coordinates = CLLocationCoordinate2D.init(latitude: lat!, longitude: long!)
                     }

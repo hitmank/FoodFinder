@@ -12,6 +12,13 @@ import Alamofire
 
 
 let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
+let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
+let LATITUDE = "latitude"
+let LONGITUDE = "longitude"
+let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
+let AUTH_HEADER_KEY = "Authorization"
+let TOP_BUFFER : CGFloat = 20.0
+
 enum displayState{
     case selected
     case unselected
@@ -28,11 +35,11 @@ class ViewController: UIViewController {
     
     @IBOutlet var infoView: FoodInfoView!
     
-    @IBAction func didTapClose(_ sender: UIButton) {
+
+    @objc func didTap(){
         state = .unselected
         UIView.animate(withDuration: 1.0, animations: {self.updateFrame()})
     }
-    
     required init?(coder aDecoder: NSCoder) {
         GMSServices.provideAPIKey(API_KEY)
         super.init(coder: aDecoder)
@@ -47,12 +54,12 @@ class ViewController: UIViewController {
         switch state {
         case .selected:
             if currentOrientation == .portrait || currentOrientation == .portraitUpsideDown{
-                infoView.frame = CGRect.init(x: 5, y: 0, width: viewSize.width-10, height: viewSize.height-195)
-                mapView.frame = CGRect.init(x: 10, y: viewSize.height-200, width: viewSize.width-20, height: 200)
+                infoView.frame = CGRect.init(x: 5, y: TOP_BUFFER, width: viewSize.width-10, height: viewSize.height-185)
+                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height: viewSize.height - (infoView.frame.height + infoView.frame.origin.y))
             }
             else{
-                infoView.frame = CGRect.init(x: 5, y: 0, width: viewSize.width-10, height: viewSize.height-50)
-                mapView.frame = CGRect.init(x: 10, y: viewSize.height-50, width: viewSize.width-20, height: 50)
+                infoView.frame = CGRect.init(x: 5, y: 0, width: viewSize.width-10, height: viewSize.height-40)
+                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height: viewSize.height - (infoView.frame.height + infoView.frame.origin.y))
             }
             break;
         case .unselected:
@@ -70,6 +77,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(didTap))
+        infoView.addGestureRecognizer(tapGes)
+        infoView.layer.cornerRadius = 10.0
+        mapView.layer.cornerRadius = 10.0
+        
         mapView.isMyLocationEnabled = true
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -89,15 +102,14 @@ class ViewController: UIViewController {
     
     func showFood(){
         let param : Parameters = [
-            "latitude" : self.currentLocation!.coordinate.latitude,
-            "longitude" : self.currentLocation!.coordinate.longitude
+            LATITUDE : self.currentLocation!.coordinate.latitude,
+            LONGITUDE : self.currentLocation!.coordinate.longitude
         ]
         let headers: HTTPHeaders = [
-            "Authorization": "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx",
-            "Accept": "application/json"
+            AUTH_HEADER_KEY: AUTH_HEADER_VALUE
         ]
         
-        Alamofire.request("https://api.yelp.com/v3/businesses/search", method: .get, parameters: param, encoding: URLEncoding.default , headers: headers).responseJSON(completionHandler: {response in
+        Alamofire.request(SEARCH_REQUEST, method: .get, parameters: param, encoding: URLEncoding.default , headers: headers).responseJSON(completionHandler: {response in
             
             if let jsonResult = response.result.value{
                 if let responseToParse = jsonResult as? NSDictionary{
@@ -112,7 +124,7 @@ class ViewController: UIViewController {
                 }
             }
             else{
-                
+                //TODO: handle errors
             }
             
         })
