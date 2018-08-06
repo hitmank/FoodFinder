@@ -1,4 +1,4 @@
-module Pods_FoodFinder {
+framework module Pods_FoodFinder {
   umbrella header "Pods-FoodFinder-umbrella.h"
 
   export *

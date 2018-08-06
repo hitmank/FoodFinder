@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - DCAnimationKit (0.0.6)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -7,23 +8,88 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
+  - MaterialComponents/Buttons (59.1.1):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Shapes
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - "MaterialComponents/Buttons+ButtonThemer (59.1.1)":
+    - MaterialComponents/Buttons
+    - "MaterialComponents/Buttons+ColorThemer"
+    - "MaterialComponents/Buttons+TypographyThemer"
+  - "MaterialComponents/Buttons+ColorThemer (59.1.1)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Color
+  - "MaterialComponents/Buttons+TypographyThemer (59.1.1)":
+    - MaterialComponents/Buttons
+    - MaterialComponents/schemes/Typography
+  - MaterialComponents/Cards (59.1.1):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Shapes
+    - MaterialComponents/ShadowLayer
+  - "MaterialComponents/Cards+ColorThemer (59.1.1)":
+    - MaterialComponents/Cards
+    - MaterialComponents/schemes/Color
+  - MaterialComponents/Ink (59.1.1):
+    - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (59.1.1)
+  - MaterialComponents/private/Application (59.1.1)
+  - MaterialComponents/private/Icons/Base (59.1.1)
+  - MaterialComponents/private/Icons/ic_check_circle (59.1.1):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (59.1.1)
+  - MaterialComponents/private/Shapes (59.1.1):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/schemes/Color (59.1.1)
+  - MaterialComponents/schemes/Typography (59.1.1)
+  - MaterialComponents/ShadowElevations (59.1.1)
+  - MaterialComponents/ShadowLayer (59.1.1):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Typography (59.1.1):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (1.0.4)
+  - MDFTextAccessibility (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - DCAnimationKit
   - GoogleMaps
   - GooglePlaces
+  - MaterialComponents/Buttons
+  - "MaterialComponents/Buttons+ButtonThemer"
+  - "MaterialComponents/Buttons+ColorThemer"
+  - "MaterialComponents/Buttons+TypographyThemer"
+  - MaterialComponents/Cards
+  - "MaterialComponents/Cards+ColorThemer"
+  - MaterialComponents/Palettes
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - DCAnimationKit
     - GoogleMaps
     - GooglePlaces
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  DCAnimationKit: 7133bef877ce1aa113dcfeea1380ca67f91f7608
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  MaterialComponents: 9ba063439c19dd92b3489bc2c4e428f2abaced65
+  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
+  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
 
-PODFILE CHECKSUM: 68e7339dd4892a9498ff05e0fd37badec2d635d1
+PODFILE CHECKSUM: 6a9acf31481b0c5c36660b2c408e4d6cb7f5eabf
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

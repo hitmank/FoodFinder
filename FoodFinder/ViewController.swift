@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import Alamofire
-
+import DCAnimationKit
 
 let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
 let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
@@ -18,6 +18,8 @@ let LONGITUDE = "longitude"
 let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
 let AUTH_HEADER_KEY = "Authorization"
 let TOP_BUFFER : CGFloat = 20.0
+let GAP : CGFloat = 5.0
+var bgColor : UIColor = UIColor.init(red: 64/255.0, green: 41/255.0, blue: 10/255.0, alpha: 1)
 
 enum displayState{
     case selected
@@ -38,7 +40,10 @@ class ViewController: UIViewController {
 
     @objc func didTap(){
         state = .unselected
-        UIView.animate(withDuration: 1.0, animations: {self.updateFrame()})
+        UIView.animate(withDuration: 1.0, animations: {
+            self.view.backgroundColor = UIColor.lightGray
+            self.infoView.isHidden = true;
+            self.updateFrame()})
     }
     required init?(coder aDecoder: NSCoder) {
         GMSServices.provideAPIKey(API_KEY)
@@ -47,23 +52,26 @@ class ViewController: UIViewController {
     
     func updateFrame(_ size: CGSize? = nil){
         var viewSize = self.view.frame.size
+        let currentOrientationStatus = UIApplication.shared.statusBarOrientation
         if(size != nil){
             viewSize = size!
         }
     
         switch state {
         case .selected:
-            if currentOrientation == .portrait || currentOrientation == .portraitUpsideDown{
-                infoView.frame = CGRect.init(x: 5, y: TOP_BUFFER, width: viewSize.width-10, height: viewSize.height-185)
-                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height: viewSize.height - (infoView.frame.height + infoView.frame.origin.y))
+            if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
+                infoView.frame = CGRect.init(x: 10, y: TOP_BUFFER, width: viewSize.width-20, height: viewSize.height-185)
+//                [self.infoView bounceIntoView:self.view direction:DCAnimationDirectionTop];
+                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y + GAP, width: viewSize.width-20, height: mapView.frame.height)
+                
             }
             else{
-                infoView.frame = CGRect.init(x: 5, y: 0, width: viewSize.width-10, height: viewSize.height-40)
-                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height: viewSize.height - (infoView.frame.height + infoView.frame.origin.y))
+                infoView.frame = CGRect.init(x: 5, y: TOP_BUFFER, width: viewSize.width-10, height: viewSize.height-40)
+                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height:mapView.frame.height)
             }
             break;
         case .unselected:
-            if currentOrientation == .portrait || currentOrientation == .portraitUpsideDown{
+            if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
                 mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
                 infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
             }
@@ -74,10 +82,23 @@ class ViewController: UIViewController {
             break;
         }
     }
-    
+    override func viewWillLayoutSubviews() {
+        updateFrame()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+//        for family: String in UIFont.familyNames
+//        {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
         
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        currentOrientation = UIDevice.current.orientation
+
         let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(didTap))
         infoView.addGestureRecognizer(tapGes)
         infoView.layer.cornerRadius = 10.0
@@ -139,7 +160,7 @@ extension ViewController: CLLocationManagerDelegate {
         let location: CLLocation = locations.last!
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
-                                              zoom: 10.0)
+                                              zoom: 15.0)
         
         mapView.camera = camera
         mapView.delegate = self
@@ -177,12 +198,17 @@ extension ViewController : GMSMapViewDelegate{
         let selectedMarker = marker as! CustomMarker
         //populate the infoView with food details
         self.infoView.foodObject = selectedMarker.foodModel
-        
         //Update frame
         state = .selected
+        self.infoView.isHidden = false;
+
+
         UIView.animate(withDuration: 1.0, animations: {
+            self.view.backgroundColor = bgColor
             self.updateFrame()
         })
+        
+        
         return true;
     }
 }

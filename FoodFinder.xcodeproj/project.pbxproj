@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E052EFA24483EDBD174F179 /* libPods-FoodFinder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A21BE9300332720CC1F8B812 /* libPods-FoodFinder.a */; };
+		A1A3313164E0F866C678B561 /* Pods_FoodFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */; };
+		A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */; };
+		A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */; };
+		A43873BE2117E87F007E6142 /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B92117E87E007E6142 /* BebasNeue-Regular.ttf */; };
+		A43873BF2117E87F007E6142 /* BebasNeue-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873BA2117E87E007E6142 /* BebasNeue-Book.ttf */; };
+		A43873C02117E87F007E6142 /* BebasNeue Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873BB2117E87F007E6142 /* BebasNeue Thin.ttf */; };
+		A43873C72117E8CA007E6142 /* Audrey-MediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C12117E8C9007E6142 /* Audrey-MediumOblique.otf */; };
+		A43873C82117E8CA007E6142 /* Audrey-NormalOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C22117E8C9007E6142 /* Audrey-NormalOblique.otf */; };
+		A43873C92117E8CA007E6142 /* Audrey-Normal.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C32117E8C9007E6142 /* Audrey-Normal.otf */; };
+		A43873CA2117E8CA007E6142 /* Audrey-BoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C42117E8CA007E6142 /* Audrey-BoldOblique.otf */; };
+		A43873CB2117E8CA007E6142 /* Audrey-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C52117E8CA007E6142 /* Audrey-Bold.otf */; };
+		A43873CC2117E8CA007E6142 /* Audrey-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C62117E8CA007E6142 /* Audrey-Medium.otf */; };
+		A43873CE21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A43873CD21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg */; };
 		A4B4524121153F6D005F0680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4524021153F6D005F0680 /* AppDelegate.swift */; };
 		A4B4524321153F6D005F0680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4524221153F6D005F0680 /* ViewController.swift */; };
 		A4B4524621153F6D005F0680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B4524421153F6D005F0680 /* Main.storyboard */; };
@@ -22,7 +34,23 @@
 
 /* Begin PBXFileReference section */
 		035522093EBE1E84DE1A04E2 /* Pods-FoodFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder.release.xcconfig"; sourceTree = "<group>"; };
-		A21BE9300332720CC1F8B812 /* libPods-FoodFinder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FoodFinder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Light.ttf"; sourceTree = "<group>"; };
+		A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.ttf"; sourceTree = "<group>"; };
+		A43873B92117E87E007E6142 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
+		A43873BA2117E87E007E6142 /* BebasNeue-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Book.ttf"; sourceTree = "<group>"; };
+		A43873BB2117E87F007E6142 /* BebasNeue Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Thin.ttf"; sourceTree = "<group>"; };
+		A43873C12117E8C9007E6142 /* Audrey-MediumOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-MediumOblique.otf"; sourceTree = "<group>"; };
+		A43873C22117E8C9007E6142 /* Audrey-NormalOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-NormalOblique.otf"; sourceTree = "<group>"; };
+		A43873C32117E8C9007E6142 /* Audrey-Normal.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-Normal.otf"; sourceTree = "<group>"; };
+		A43873C42117E8CA007E6142 /* Audrey-BoldOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-BoldOblique.otf"; sourceTree = "<group>"; };
+		A43873C52117E8CA007E6142 /* Audrey-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-Bold.otf"; sourceTree = "<group>"; };
+		A43873C62117E8CA007E6142 /* Audrey-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-Medium.otf"; sourceTree = "<group>"; };
+		A43873CD21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg; sourceTree = "<group>"; };
+		A4A52E032117C62200A29D92 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A52E052117C62200A29D92 /* libMaterialComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMaterialComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A52E072117C62200A29D92 /* libMDFInternationalization.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFInternationalization.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A52E092117C62200A29D92 /* libMDFTextAccessibility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFTextAccessibility.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B4523D21153F6D005F0680 /* FoodFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B4524021153F6D005F0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4B4524221153F6D005F0680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E052EFA24483EDBD174F179 /* libPods-FoodFinder.a in Frameworks */,
+				A1A3313164E0F866C678B561 /* Pods_FoodFinder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +81,11 @@
 		07B1B6310F4A725DDE048B91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A21BE9300332720CC1F8B812 /* libPods-FoodFinder.a */,
+				A4A52E032117C62200A29D92 /* libAlamofire.a */,
+				A4A52E052117C62200A29D92 /* libMaterialComponents.a */,
+				A4A52E072117C62200A29D92 /* libMDFInternationalization.a */,
+				A4A52E092117C62200A29D92 /* libMDFTextAccessibility.a */,
+				7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,6 +128,18 @@
 		A4ECD1F321168733008A4A7C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A43873CD21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg */,
+				A43873C52117E8CA007E6142 /* Audrey-Bold.otf */,
+				A43873C42117E8CA007E6142 /* Audrey-BoldOblique.otf */,
+				A43873C62117E8CA007E6142 /* Audrey-Medium.otf */,
+				A43873C12117E8C9007E6142 /* Audrey-MediumOblique.otf */,
+				A43873C32117E8C9007E6142 /* Audrey-Normal.otf */,
+				A43873C22117E8C9007E6142 /* Audrey-NormalOblique.otf */,
+				A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */,
+				A43873BA2117E87E007E6142 /* BebasNeue-Book.ttf */,
+				A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */,
+				A43873B92117E87E007E6142 /* BebasNeue-Regular.ttf */,
+				A43873BB2117E87F007E6142 /* BebasNeue Thin.ttf */,
 				A4ECD1F42116874F008A4A7C /* MarkerFelt.ttf */,
 				A4ECD1F621168D1A008A4A7C /* fontListt */,
 			);
@@ -122,7 +166,8 @@
 				A4B4523921153F6D005F0680 /* Sources */,
 				A4B4523A21153F6D005F0680 /* Frameworks */,
 				A4B4523B21153F6D005F0680 /* Resources */,
-				BFB836F0037E02AFB3D511B7 /* [CP] Copy Pods Resources */,
+				F91242A5B72C48D774387CD8 /* [CP] Copy Pods Resources */,
+				82E7A456E20A209D75C46FC6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -171,12 +216,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43873C92117E8CA007E6142 /* Audrey-Normal.otf in Resources */,
+				A43873CE21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg in Resources */,
 				A4ECD1F721168D1A008A4A7C /* fontListt in Resources */,
+				A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */,
 				A4B4524B21153F70005F0680 /* LaunchScreen.storyboard in Resources */,
 				A4B4524821153F70005F0680 /* Assets.xcassets in Resources */,
+				A43873C72117E8CA007E6142 /* Audrey-MediumOblique.otf in Resources */,
+				A43873CC2117E8CA007E6142 /* Audrey-Medium.otf in Resources */,
 				A4B452532115476A005F0680 /* Podfile in Resources */,
+				A43873BF2117E87F007E6142 /* BebasNeue-Book.ttf in Resources */,
+				A43873C82117E8CA007E6142 /* Audrey-NormalOblique.otf in Resources */,
+				A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */,
+				A43873CA2117E8CA007E6142 /* Audrey-BoldOblique.otf in Resources */,
 				A4B4524621153F6D005F0680 /* Main.storyboard in Resources */,
 				A4ECD1F52116874F008A4A7C /* MarkerFelt.ttf in Resources */,
+				A43873C02117E87F007E6142 /* BebasNeue Thin.ttf in Resources */,
+				A43873CB2117E8CA007E6142 /* Audrey-Bold.otf in Resources */,
+				A43873BE2117E87F007E6142 /* BebasNeue-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +258,33 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BFB836F0037E02AFB3D511B7 /* [CP] Copy Pods Resources */ = {
+		82E7A456E20A209D75C46FC6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DCAnimationKit/DCAnimationKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DCAnimationKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F91242A5B72C48D774387CD8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

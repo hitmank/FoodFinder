@@ -8,6 +8,8 @@ print("== \(names)")
 }
 }
 
+DIN Condensed
+== DINCondensed-Bold
 Copperplate
 == Copperplate-Light
 == Copperplate
@@ -356,5 +358,6 @@ Euphemia UCAS
 == EuphemiaUCAS-Italic
 == EuphemiaUCAS-Bold
 Bangla Sangam MN
-DIN Condensed
-== DINCondensed-Bold
+Audrey
+== Audrey-MediumOblique
+

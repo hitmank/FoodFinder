@@ -6,6 +6,15 @@
 	<string>To get your location</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Audrey-Bold.otf</string>
+		<string>Audrey-Medium.otf</string>
+		<string>BebasNeue-Bold.ttf</string>
+		<string>BebasNeue-Book.ttf</string>
+		<string>Audrey-Normal.otf</string>
+		<string>BebasNeue-Regular.ttf</string>
+		<string>BebasNeue-Thin.ttf</string>
+		<string>Audrey-MediumOblique.otf</string>
+		<string></string>
 		<string>MarkerFelt.ttf</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
