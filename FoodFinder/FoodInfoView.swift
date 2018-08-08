@@ -15,10 +15,17 @@ import MaterialComponents.MaterialButtons_TypographyThemer
 import MaterialComponents.MaterialCards
 import MaterialComponents.MaterialCards_ColorThemer
 import MaterialComponents.MaterialPalettes
+import Motion
+import DCAnimationKit
 
 
 class FoodInfoView : UIView{
     
+    var delegate : actionDelegate? = nil{
+        didSet{
+            self.mainImageView.delegate = delegate
+        }
+    }
     var titleView : TitleView = TitleView()
     let offsett_TitleAndMainImage : CGFloat = 8.0
     var mainImageView : ImageViewer = ImageViewer.init(frame: CGRect.zero)
@@ -44,6 +51,7 @@ class FoodInfoView : UIView{
         if(titleView.titleLabel.frame.height == 0){
             titleView.updateLayout()
         }
+        
         titleView.frame = CGRect.init(x: 0, y: 4, width: self.frame.width , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
         
         mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
@@ -57,6 +65,10 @@ class FoodInfoView : UIView{
         
     }
     
+    func animateViews(){
+        self.mainImageView.isMotionEnabled = true;
+        self.mainImageView.animateView()
+    }
    
 }
 
@@ -69,8 +81,8 @@ class TitleView : UIView {
     let titleLabelFont = "Audrey-Bold"
     let descLabelFont = "Cochin"
     let labelOffset : CGFloat = 4.0
-
     
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -120,13 +132,22 @@ class ImageViewer : UIView {
     var showMenuButton : MDCButton = MDCButton.init(frame: CGRect.zero)
     var showReviewsButton : MDCButton = MDCButton.init(frame: CGRect.zero)
     let card = MDCCard()
-    
+    var delegate : actionDelegate? = nil
     var currentImage : UIImage = UIImage(){
         didSet{
             imageView.image = currentImage
         }
     }
-    
+    func animateView(){
+//        isMotionEnabled = true
+//        showMenuButton.isMotionEnabled = true;
+//        showMoreButton.isMotionEnabled = true;
+//        showReviewsButton.isMotionEnabled = true;
+
+        showMenuButton.expand(into: self, finished: {self.showMoreButton.expand(into: self, finished: {self.showReviewsButton.expand(into: self, finished: {})})})
+        
+        
+    }
     func updateLayout(){
     
         var size = CGSize.init(width: 0.6*self.frame.width, height: 0.8*self.frame.height)
@@ -184,9 +205,9 @@ class ImageViewer : UIView {
         
         self.addSubview(card)
 //        self.addSubview(imageView)
-        self.addSubview(showMoreButton)
-        self.addSubview(showMenuButton)
-        self.addSubview(showReviewsButton)
+//        self.addSubview(showMoreButton)
+//        self.addSubview(showMenuButton)
+//        self.addSubview(showReviewsButton)
         
     }
     override init(frame: CGRect) {
@@ -275,13 +296,17 @@ class ImageViewer : UIView {
         
         updateLayout()
         MDCCardsColorThemer.applySemanticColorScheme(colorSchemePhotos, to: card)
-
+        
+        showMenuButton.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    @objc func showMenu(){
+        self.delegate!.didTapMenu()
+    }
     @objc func showMoreImages(){
         
     }
@@ -355,4 +380,5 @@ class DetailView : UIView{
     }
     
 }
+
 

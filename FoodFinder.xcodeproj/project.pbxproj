@@ -20,6 +20,7 @@
 		A43873CB2117E8CA007E6142 /* Audrey-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C52117E8CA007E6142 /* Audrey-Bold.otf */; };
 		A43873CC2117E8CA007E6142 /* Audrey-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A43873C62117E8CA007E6142 /* Audrey-Medium.otf */; };
 		A43873CE21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A43873CD21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg */; };
+		A49D7B85211A76B2008FA922 /* menuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D7B84211A76B2008FA922 /* menuVC.swift */; };
 		A4B4524121153F6D005F0680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4524021153F6D005F0680 /* AppDelegate.swift */; };
 		A4B4524321153F6D005F0680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4524221153F6D005F0680 /* ViewController.swift */; };
 		A4B4524621153F6D005F0680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B4524421153F6D005F0680 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		A43873C52117E8CA007E6142 /* Audrey-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-Bold.otf"; sourceTree = "<group>"; };
 		A43873C62117E8CA007E6142 /* Audrey-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audrey-Medium.otf"; sourceTree = "<group>"; };
 		A43873CD21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg; sourceTree = "<group>"; };
+		A49D7B84211A76B2008FA922 /* menuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuVC.swift; sourceTree = "<group>"; };
 		A4A52E032117C62200A29D92 /* libAlamofire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAlamofire.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A52E052117C62200A29D92 /* libMaterialComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMaterialComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A52E072117C62200A29D92 /* libMDFInternationalization.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFInternationalization.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 				A4B4524C21153F70005F0680 /* Info.plist */,
 				A4ECD1EF2116587F008A4A7C /* FoodModel.swift */,
 				A4ECD1F121166825008A4A7C /* FoodInfoView.swift */,
+				A49D7B84211A76B2008FA922 /* menuVC.swift */,
 			);
 			path = FoodFinder;
 			sourceTree = "<group>";
@@ -267,17 +270,25 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DCAnimationKit/DCAnimationKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ElasticTransition/ElasticTransition.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionAnimation/MotionAnimation.framework",
+				"${BUILT_PRODUCTS_DIR}/StarWars/StarWars.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DCAnimationKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ElasticTransition.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarWars.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -311,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A49D7B85211A76B2008FA922 /* menuVC.swift in Sources */,
 				A4ECD1F221166825008A4A7C /* FoodInfoView.swift in Sources */,
 				A4ECD1F02116587F008A4A7C /* FoodModel.swift in Sources */,
 				A4B4524321153F6D005F0680 /* ViewController.swift in Sources */,

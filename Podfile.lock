@@ -1,6 +1,8 @@
 PODS:
   - Alamofire (4.7.3)
   - DCAnimationKit (0.0.6)
+  - ElasticTransition (3.1.1):
+    - MotionAnimation (~> 0.1.2)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
@@ -57,10 +59,16 @@ PODS:
     - MaterialComponents/private/Math
   - MDFInternationalization (1.0.4)
   - MDFTextAccessibility (1.2.0)
+  - Motion (1.4.3):
+    - Motion/Core (= 1.4.3)
+  - Motion/Core (1.4.3)
+  - MotionAnimation (0.1.2)
+  - StarWars (2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - DCAnimationKit
+  - ElasticTransition
   - GoogleMaps
   - GooglePlaces
   - MaterialComponents/Buttons
@@ -70,26 +78,36 @@ DEPENDENCIES:
   - MaterialComponents/Cards
   - "MaterialComponents/Cards+ColorThemer"
   - MaterialComponents/Palettes
+  - Motion (~> 1.0)
+  - StarWars (~> 2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - DCAnimationKit
+    - ElasticTransition
     - GoogleMaps
     - GooglePlaces
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - Motion
+    - MotionAnimation
+    - StarWars
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   DCAnimationKit: 7133bef877ce1aa113dcfeea1380ca67f91f7608
+  ElasticTransition: 6c4e4739e32480c864217db912100f3657f6447a
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   MaterialComponents: 9ba063439c19dd92b3489bc2c4e428f2abaced65
   MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
+  Motion: 153ba49692997888556c7a95207278a8b1f8be95
+  MotionAnimation: ff5c8fc2e429d7e10d46ae86819ba9759846c343
+  StarWars: 3c68dc5e9f1b6ca6d407b1d4218fd8a65c2eacfa
 
-PODFILE CHECKSUM: 6a9acf31481b0c5c36660b2c408e4d6cb7f5eabf
+PODFILE CHECKSUM: bf186150baa4c965a886bf38a11d7da9e7e9e764
 
 COCOAPODS: 1.5.3

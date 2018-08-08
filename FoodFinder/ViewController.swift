@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import Alamofire
 import DCAnimationKit
+import Motion
 
 let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
 let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
@@ -28,7 +29,16 @@ enum displayState{
 class CustomMarker :  GMSMarker{
     var foodModel : FoodModel = FoodModel();
 }
-class ViewController: UIViewController {
+class ViewController: UIViewController, actionDelegate {
+    func didTapMenu1() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    let m  = MenuVC();
+    func didTapMenu() {
+        m.delegate = self
+        self.present(m, animated: true, completion: nil)
+    }
+    
     @IBOutlet var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -95,7 +105,7 @@ class ViewController: UIViewController {
 //                print("== \(names)")
 //            }
 //        }
-        
+        infoView.delegate = self
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         currentOrientation = UIDevice.current.orientation
 
@@ -206,9 +216,16 @@ extension ViewController : GMSMapViewDelegate{
         UIView.animate(withDuration: 1.0, animations: {
             self.view.backgroundColor = bgColor
             self.updateFrame()
+        },completion:{_ in
+
+            self.isMotionEnabled = true;
+            self.infoView.isMotionEnabled = true;
+            self.infoView.animateViews()
+           
         })
         
         
         return true;
     }
 }
+
