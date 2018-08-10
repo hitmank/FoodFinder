@@ -1,4 +1,4 @@
-//
+    //
 //  ViewController.swift
 //  FoodFinder
 //
@@ -11,17 +11,21 @@ import GoogleMaps
 import Alamofire
 import DCAnimationKit
 import Motion
+import NYTPhotoViewer
 
 let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
 let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
 let LATITUDE = "latitude"
 let LONGITUDE = "longitude"
 let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
+let DETAIL_REQUEST = "https://api.yelp.com/v3/businesses/"
 let AUTH_HEADER_KEY = "Authorization"
 let TOP_BUFFER : CGFloat = 20.0
 let GAP : CGFloat = 5.0
 var bgColor : UIColor = UIColor.init(red: 64/255.0, green: 41/255.0, blue: 10/255.0, alpha: 1)
-
+let yelpHeader: HTTPHeaders = [
+    AUTH_HEADER_KEY: AUTH_HEADER_VALUE
+]
 enum displayState{
     case selected
     case unselected
@@ -38,12 +42,21 @@ class ViewController: UIViewController, actionDelegate {
         m.delegate = self
         self.present(m, animated: true, completion: nil)
     }
+    var dataSourcePhto = NYTPhotoViewerArrayDataSource()
+    func didTapPhotos(){
+        self.dataSourcePhto = NYTPhotoViewerArrayDataSource.init(photos: currentSelectedRestrauntDetail?.photos)
+        photosVC = NYTPhotosViewController.init(dataSource: self.dataSourcePhto)
+        self.present(photosVC, animated: true, completion:nil)
+    }
     
     @IBOutlet var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var state : displayState = .unselected
     var currentOrientation : UIDeviceOrientation = UIDevice.current.orientation
+    var detailsMapping : Dictionary<String, FoodDetailModel> = Dictionary<String, FoodDetailModel>()
+    var currentSelectedRestrauntDetail : FoodDetailModel? = nil
+    var photosVC : UIViewController = UIViewController()
     
     @IBOutlet var infoView: FoodInfoView!
     
@@ -130,17 +143,30 @@ class ViewController: UIViewController, actionDelegate {
         currentOrientation = UIDevice.current.orientation
         UIView.animate(withDuration: 0.5, animations: {self.updateFrame(size)})
     }
-    
+    func requestForFoodDetails(for id: String){
+        let url = DETAIL_REQUEST + id
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: yelpHeader).responseJSON(completionHandler: {response in
+            
+            if let jsonResult = response.result.value{
+                if let responseToParse = jsonResult as? NSDictionary{
+                    let parsedResult = Parser.parseDetailsResult(responseToParse)
+                    guard let detailResult = parsedResult else {return}
+                    self.currentSelectedRestrauntDetail = detailResult
+                }
+            }
+                
+            
+            
+        })
+    }
     func showFood(){
         let param : Parameters = [
             LATITUDE : self.currentLocation!.coordinate.latitude,
             LONGITUDE : self.currentLocation!.coordinate.longitude
         ]
-        let headers: HTTPHeaders = [
-            AUTH_HEADER_KEY: AUTH_HEADER_VALUE
-        ]
         
-        Alamofire.request(SEARCH_REQUEST, method: .get, parameters: param, encoding: URLEncoding.default , headers: headers).responseJSON(completionHandler: {response in
+        
+        Alamofire.request(SEARCH_REQUEST, method: .get, parameters: param, encoding: URLEncoding.default , headers: yelpHeader).responseJSON(completionHandler: {response in
             
             if let jsonResult = response.result.value{
                 if let responseToParse = jsonResult as? NSDictionary{
@@ -206,8 +232,18 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController : GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let selectedMarker = marker as! CustomMarker
-        //populate the infoView with food details
+        //populate the infoView
         self.infoView.foodObject = selectedMarker.foodModel
+        
+        //Check if we have the details for the current restraunt. If not, send request for it.
+        if let detail = detailsMapping[selectedMarker.foodModel.id]{
+            currentSelectedRestrauntDetail = detail
+        }
+        else{
+            //send Request
+            self.requestForFoodDetails(for: selectedMarker.foodModel.id)
+        }
+        
         //Update frame
         state = .selected
         self.infoView.isHidden = false;

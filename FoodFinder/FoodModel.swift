@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import NYTPhotoViewer
 
 struct FoodModel {
     var name : String = ""
@@ -20,7 +21,24 @@ struct FoodModel {
     var isClosed : Bool = false
     var rating : Double = 0.0
     var cost : String = ""
+}
+
+class Photo: NSObject, NYTPhoto {
+    var imageData: Data? = nil
     
+    var placeholderImage: UIImage? = nil
+    
+    var attributedCaptionTitle: NSAttributedString? = nil
+    
+    var attributedCaptionSummary: NSAttributedString? = nil
+    
+    var attributedCaptionCredit: NSAttributedString? = nil
+
+    var image: UIImage? = nil
+}
+
+struct FoodDetailModel {
+    var photos : [Photo] = []
 }
 
 class Parser{
@@ -105,5 +123,20 @@ class Parser{
         
         
         return nil
+    }
+    
+    static func parseDetailsResult(_ result: NSDictionary) -> FoodDetailModel?{
+        var foodDetail = FoodDetailModel()
+        if let photos = result["photos"] as? Array<String>{
+            for pic in photos{
+                if let imageData: NSData = NSData.init(contentsOf: URL.init(string: pic)!) {
+                    let currPic = Photo()
+                    currPic.image = UIImage.init(data: imageData as Data)
+                    foodDetail.photos.append(currPic)
+                }
+                
+            }
+        }
+        return foodDetail
     }
 }

@@ -14,7 +14,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ElasticTransition.xcscheme</key>
+		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,17 +44,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MotionAnimation.xcscheme</key>
+		<key>NYTPhotoViewer-NYTPhotoViewer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NYTPhotoViewer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-FoodFinder.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>StarWars.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

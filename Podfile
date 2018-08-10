@@ -14,6 +14,5 @@ target 'FoodFinder' do
     pod 'DCAnimationKit'
     pod 'Alamofire', '~> 4.7'
     pod 'Motion', '~> 1.0'
-    pod 'StarWars', '~> 2.0'
-    pod 'ElasticTransition'
+    pod 'NYTPhotoViewer'
 end

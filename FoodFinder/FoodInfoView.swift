@@ -298,7 +298,7 @@ class ImageViewer : UIView {
         MDCCardsColorThemer.applySemanticColorScheme(colorSchemePhotos, to: card)
         
         showMenuButton.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
-        
+        showMoreButton.addTarget(self, action: #selector(showMoreImages), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -308,7 +308,7 @@ class ImageViewer : UIView {
         self.delegate!.didTapMenu()
     }
     @objc func showMoreImages(){
-        
+        self.delegate!.didTapPhotos()
     }
     
 }

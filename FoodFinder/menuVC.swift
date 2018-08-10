@@ -8,17 +8,13 @@
 
 import Foundation
 import UIKit
-import StarWars
-import ElasticTransition
 
-class MenuVC : ElasticModalViewController{
+class MenuVC : UIViewController{
     var delegate: actionDelegate? = nil
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.red;
         self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(add)))
-        self.modalTransition.edge = .right
-        self.modalTransition.radiusFactor = 0.7
-//        self.transitioningDelegate = self
+        
     }
 //    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 //        return StarWarsGLAnimator()
@@ -38,4 +34,5 @@ class MenuVC : ElasticModalViewController{
 protocol actionDelegate {
     func didTapMenu();
     func didTapMenu1();
+    func didTapPhotos();
 }
