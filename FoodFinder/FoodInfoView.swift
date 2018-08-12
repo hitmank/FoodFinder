@@ -1,3 +1,4 @@
+
 //
 //  FoodInfoView.swift
 //  FoodFinder
@@ -20,7 +21,22 @@ import DCAnimationKit
 
 
 class FoodInfoView : UIView{
-    
+    func displayReviews(_ reviews : [ReviewModel]){
+        self.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.init(x: 5, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail, width: self.frame.width-10, height: 0.20*self.frame.height), reviewsToDisplay: reviews)
+      
+        UIView.animate(withDuration: 1.0, animations: {
+//            self.reviewDisplayView!.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.detailView.frame.origin.y, width: self.detailView.frame.width, height: 50)
+            self.detailView.frame = CGRect.init(x: 5, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail + self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
+            
+            
+            
+        }, completion: { _ in
+                
+              self.addSubview(self.reviewDisplayView);
+            
+            
+        })
+    }
     var delegate : actionDelegate? = nil{
         didSet{
             self.mainImageView.delegate = delegate
@@ -30,8 +46,9 @@ class FoodInfoView : UIView{
     let offsett_TitleAndMainImage : CGFloat = 8.0
     var mainImageView : ImageViewer = ImageViewer.init(frame: CGRect.zero)
     let offset_MainImageAndDetail : CGFloat = 8.0
+    var reviewDisplayView : ReviewDisplayView = ReviewDisplayView.init(frame: CGRect.zero, reviewsToDisplay: [])
     var detailView : DetailView = DetailView()
-    
+    var isDisplayingReviews  = false
     var foodObject : FoodModel? = nil{
         didSet{
             if(foodObject != nil){
@@ -57,7 +74,8 @@ class FoodInfoView : UIView{
         mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
         mainImageView.updateLayout()
         
-        detailView.frame = CGRect.init(x: 5.0, y: mainImageView.frame.origin.y + mainImageView.frame.height + offset_MainImageAndDetail, width: self.frame.width - 10, height: 0.10*self.frame.height)
+        
+       self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
         
         self.addSubview(titleView)
         self.addSubview(mainImageView)
@@ -299,6 +317,7 @@ class ImageViewer : UIView {
         
         showMenuButton.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
         showMoreButton.addTarget(self, action: #selector(showMoreImages), for: .touchUpInside)
+        showReviewsButton.addTarget(self, action: #selector(showReviews), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -310,8 +329,13 @@ class ImageViewer : UIView {
     @objc func showMoreImages(){
         self.delegate!.didTapPhotos()
     }
+    @objc func showReviews(){
+        self.delegate!.didTapReviews()
+    }
     
 }
+    
+
 
 class DetailView : UIView{
     
@@ -381,4 +405,101 @@ class DetailView : UIView{
     
 }
 
+class ReviewDisplayView : UIView{
+    let reviewList : [ReviewModel]
+    
+    init(frame: CGRect, reviewsToDisplay: [ReviewModel]) {
+        reviewList = reviewsToDisplay
+        super.init(frame: frame)
+        
+        if !self.frame.equalTo(CGRect.zero) {
+            var currHeight = CGFloat.init(0);
+            
+            for review in reviewList{
+                let reviewView = ReviewView.init(frame: CGRect.init(x: CGFloat.init(0), y: currHeight, width: self.frame.width, height: self.frame.height/CGFloat.init(reviewList.count) ), reviewToDisplay: review)
+                currHeight = currHeight + reviewView.frame.height + 6.0
+                self.addSubview(reviewView)
+                
+            }
+            
+            if(currHeight > self.frame.height){
+                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: currHeight)
+            }
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+//    override func layoutSubviews() {
+//        var yPos = CGFloat.init(0);
+//        for review in reviewList{
+//            let reviewView = ReviewView.init(frame: CGRect.init(x: CGFloat.init(0), y: yPos, width: self.frame.width, height: self.frame.height/CGFloat.init(reviewList.count) ), reviewToDisplay: review)
+//            
+//            self.addSubview(reviewView)
+//            yPos = yPos + self.frame.height/CGFloat.init(reviewList.count)
+//        }
+//    }
+}
 
+class ReviewView: UIView {
+    let review : ReviewModel
+    private var userLabel : UILabel = UILabel()
+    private var ratingLabel : UILabel = UILabel()
+    private var reviewTextView : UITextView = UITextView()
+    
+    init(frame: CGRect, reviewToDisplay: ReviewModel) {
+         review = reviewToDisplay
+        super.init(frame: frame)
+        self.layer.borderWidth = 0.1
+        self.layer.cornerRadius = 0.8
+        self.clipsToBounds = true;
+        self.backgroundColor = UIColor.lightGray
+        
+        //Set text
+        userLabel.text = review.user.name
+        ratingLabel.text = "Rating: " + review.ratingGiven.description + "/5"
+        reviewTextView.text = review.reviewText
+        
+        //Set Style
+        userLabel.font = UIFont.init(name: "Baskerville-SemiBold", size: 15)
+        ratingLabel.font = UIFont.init(name: "Baskerville-SemiBold", size: 15)
+        reviewTextView.font = UIFont.init(name: "Cochin", size: 11)
+        reviewTextView.backgroundColor = UIColor.clear
+        reviewTextView.isEditable = false
+        
+        //Set frame
+        userLabel.sizeToFit()
+        userLabel.frame = CGRect.init(x: 3, y: 3, width: userLabel.frame.width, height: userLabel.frame.height)
+        
+        ratingLabel.sizeToFit()
+        ratingLabel.frame = CGRect.init(x: self.frame.width - ratingLabel.frame.width, y: 3, width: ratingLabel.frame.width, height: ratingLabel.frame.height)
+        
+        reviewTextView.sizeToFit()
+        let yPos = userLabel.frame.height > ratingLabel.frame.height ? userLabel.frame.height : ratingLabel.frame.height
+        let width = reviewTextView.frame.width > self.frame.width ? self.frame.width : reviewTextView.frame.width
+//        let height = yPos + reviewTextView.frame.height > self.frame.height ? self.frame.height - yPos : reviewTextView.frame.height
+        reviewTextView.frame = CGRect.init(x: 3, y: yPos + 6.0, width: width-6, height: reviewTextView.frame.height)
+        self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: yPos + reviewTextView.frame.height + 2.0)
+                    self.addSubview(userLabel)
+        self.addSubview(ratingLabel)
+         self.addSubview(reviewTextView)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+//    override func layoutSubviews() {
+//        if !self.subviews.contains(userLabel){
+//            self.addSubview(userLabel)
+//        }
+//        if !self.subviews.contains(ratingLabel){
+//            self.addSubview(ratingLabel)
+//        }
+//        if !self.subviews.contains(reviewTextView){
+//            self.addSubview(reviewTextView)
+//        }
+//    }
+    
+    
+}

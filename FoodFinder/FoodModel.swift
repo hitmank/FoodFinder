@@ -41,6 +41,20 @@ struct FoodDetailModel {
     var photos : [Photo] = []
 }
 
+struct ReviewModel{
+    var reviewText      : String = ""
+    var ratingGiven     : Double = 0.0
+    var user            : UserModel = UserModel()
+    var linkToReview    : String = ""
+    var id              : String = ""
+}
+
+struct UserModel {
+    var name : String = ""
+    var id : String = ""
+    var imageUrl : String = ""
+}
+
 class Parser{
     static func parseResult(_ result: NSDictionary) -> [FoodModel]?{
         
@@ -139,4 +153,41 @@ class Parser{
         }
         return foodDetail
     }
+    
+    static func parseReviewsResponse(_ result: NSDictionary) -> [ReviewModel]?{
+        var reviews : [ReviewModel] = []
+        if let allReviews = result["reviews"] as? Array<NSDictionary>{
+            for currentReview in allReviews{
+                var model = ReviewModel();
+                if let rating = currentReview["rating"] as? Double{
+                    model.ratingGiven = rating
+                }
+                if let id = currentReview["id"] as? String{
+                    model.id = id
+                }
+                if let url = currentReview["url"] as? String{
+                    model.linkToReview = url
+                }
+                if let text = currentReview["text"] as? String{
+                    model.reviewText = text
+                }
+                var User = UserModel()
+                if let userDict = currentReview["user"] as? NSDictionary{
+                    if let name = userDict["name"] as? String{
+                        User.name = name
+                    }
+                    if let userID = userDict["id"] as? String{
+                        User.id = userID
+                    }
+                    if let imageURL = userDict["image_url"] as? String{
+                        User.imageUrl = imageURL
+                    }
+                }
+                model.user = User
+                reviews.append(model)
+            }
+        }
+        return reviews
+    }
+    
 }

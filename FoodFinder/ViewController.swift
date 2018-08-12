@@ -18,7 +18,7 @@ let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W
 let LATITUDE = "latitude"
 let LONGITUDE = "longitude"
 let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
-let DETAIL_REQUEST = "https://api.yelp.com/v3/businesses/"
+let BASE_REQUEST = "https://api.yelp.com/v3/businesses/"
 let AUTH_HEADER_KEY = "Authorization"
 let TOP_BUFFER : CGFloat = 20.0
 let GAP : CGFloat = 5.0
@@ -26,14 +26,39 @@ var bgColor : UIColor = UIColor.init(red: 64/255.0, green: 41/255.0, blue: 10/25
 let yelpHeader: HTTPHeaders = [
     AUTH_HEADER_KEY: AUTH_HEADER_VALUE
 ]
+    
+    
+    
 enum displayState{
     case selected
     case unselected
 }
+    
+    
+    
 class CustomMarker :  GMSMarker{
     var foodModel : FoodModel = FoodModel();
 }
+    
+    
+    
+    
 class ViewController: UIViewController, actionDelegate {
+    func didTapReviews() {
+        if infoView.isDisplayingReviews{
+            self.infoView.reviewDisplayView.removeFromSuperview()
+
+            self.infoView.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.zero, reviewsToDisplay: [])
+            infoView.isDisplayingReviews = false
+            infoView.layoutSubviews()
+        }
+        else{
+            if let _reviews = currentSelectedRestrauntReviews{
+                infoView.isDisplayingReviews = true
+                self.infoView.displayReviews(_reviews)
+            }
+        }
+    }
     func didTapMenu1() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -50,12 +75,23 @@ class ViewController: UIViewController, actionDelegate {
     }
     
     @IBOutlet var mapView: GMSMapView!
+    var reviewsMapping : Dictionary<String, [ReviewModel]> = Dictionary<String, [ReviewModel]>()
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var state : displayState = .unselected
     var currentOrientation : UIDeviceOrientation = UIDevice.current.orientation
     var detailsMapping : Dictionary<String, FoodDetailModel> = Dictionary<String, FoodDetailModel>()
-    var currentSelectedRestrauntDetail : FoodDetailModel? = nil
+    var currentSelectedRestrauntID : String = ""
+    var currentSelectedRestrauntDetail : FoodDetailModel? = nil{
+        didSet{
+            detailsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntDetail
+        }
+    }
+    var currentSelectedRestrauntReviews : [ReviewModel]? = nil{
+        didSet{
+            reviewsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntReviews
+        }
+    }
     var photosVC : UIViewController = UIViewController()
     
     @IBOutlet var infoView: FoodInfoView!
@@ -108,6 +144,7 @@ class ViewController: UIViewController, actionDelegate {
     override func viewWillLayoutSubviews() {
         updateFrame()
     }
+    var httpClient : HttpRequestClient? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
 //        for family: String in UIFont.familyNames
@@ -118,6 +155,7 @@ class ViewController: UIViewController, actionDelegate {
 //                print("== \(names)")
 //            }
 //        }
+        self.httpClient = HttpRequestClient(customer: self);
         infoView.delegate = self
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         currentOrientation = UIDevice.current.orientation
@@ -143,22 +181,7 @@ class ViewController: UIViewController, actionDelegate {
         currentOrientation = UIDevice.current.orientation
         UIView.animate(withDuration: 0.5, animations: {self.updateFrame(size)})
     }
-    func requestForFoodDetails(for id: String){
-        let url = DETAIL_REQUEST + id
-        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: yelpHeader).responseJSON(completionHandler: {response in
-            
-            if let jsonResult = response.result.value{
-                if let responseToParse = jsonResult as? NSDictionary{
-                    let parsedResult = Parser.parseDetailsResult(responseToParse)
-                    guard let detailResult = parsedResult else {return}
-                    self.currentSelectedRestrauntDetail = detailResult
-                }
-            }
-                
-            
-            
-        })
-    }
+    
     func showFood(){
         let param : Parameters = [
             LATITUDE : self.currentLocation!.coordinate.latitude,
@@ -234,14 +257,21 @@ extension ViewController : GMSMapViewDelegate{
         let selectedMarker = marker as! CustomMarker
         //populate the infoView
         self.infoView.foodObject = selectedMarker.foodModel
-        
+        currentSelectedRestrauntID = selectedMarker.foodModel.id
         //Check if we have the details for the current restraunt. If not, send request for it.
-        if let detail = detailsMapping[selectedMarker.foodModel.id]{
+        if let detail = detailsMapping[currentSelectedRestrauntID]{
             currentSelectedRestrauntDetail = detail
         }
         else{
             //send Request
-            self.requestForFoodDetails(for: selectedMarker.foodModel.id)
+            self.httpClient?.requestForRestaurantDetails(currentSelectedRestrauntID)
+        }
+        
+        if let reviews = reviewsMapping[currentSelectedRestrauntID]{
+            currentSelectedRestrauntReviews = reviews
+        }
+        else{
+            self.httpClient?.requestForReviews(currentSelectedRestrauntID)
         }
         
         //Update frame

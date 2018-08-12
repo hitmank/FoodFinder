@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		565FF1EE211E5863008FD872 /* HttpRequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565FF1ED211E5863008FD872 /* HttpRequestClient.swift */; };
 		A1A3313164E0F866C678B561 /* Pods_FoodFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */; };
 		A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */; };
 		A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		035522093EBE1E84DE1A04E2 /* Pods-FoodFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder.release.xcconfig"; sourceTree = "<group>"; };
+		565FF1ED211E5863008FD872 /* HttpRequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestClient.swift; sourceTree = "<group>"; };
 		7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Light.ttf"; sourceTree = "<group>"; };
 		A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.ttf"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				A4ECD1EF2116587F008A4A7C /* FoodModel.swift */,
 				A4ECD1F121166825008A4A7C /* FoodInfoView.swift */,
 				A49D7B84211A76B2008FA922 /* menuVC.swift */,
+				565FF1ED211E5863008FD872 /* HttpRequestClient.swift */,
 			);
 			path = FoodFinder;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 			files = (
 				A49D7B85211A76B2008FA922 /* menuVC.swift in Sources */,
 				A4ECD1F221166825008A4A7C /* FoodInfoView.swift in Sources */,
+				565FF1EE211E5863008FD872 /* HttpRequestClient.swift in Sources */,
 				A4ECD1F02116587F008A4A7C /* FoodModel.swift in Sources */,
 				A4B4524321153F6D005F0680 /* ViewController.swift in Sources */,
 				A4B4524121153F6D005F0680 /* AppDelegate.swift in Sources */,

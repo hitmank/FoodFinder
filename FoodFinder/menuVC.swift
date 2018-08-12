@@ -35,4 +35,5 @@ protocol actionDelegate {
     func didTapMenu();
     func didTapMenu1();
     func didTapPhotos();
+    func didTapReviews();
 }
