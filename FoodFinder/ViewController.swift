@@ -22,7 +22,7 @@ let BASE_REQUEST = "https://api.yelp.com/v3/businesses/"
 let AUTH_HEADER_KEY = "Authorization"
 let TOP_BUFFER : CGFloat = 20.0
 let GAP : CGFloat = 5.0
-var bgColor : UIColor = UIColor.init(red: 64/255.0, green: 41/255.0, blue: 10/255.0, alpha: 1)
+var bgColor : UIColor = UIColor.init(red: 58/255.0, green: 97/255.0, blue: 134/255.0, alpha: 1)
 let yelpHeader: HTTPHeaders = [
     AUTH_HEADER_KEY: AUTH_HEADER_VALUE
 ]
@@ -44,13 +44,129 @@ class CustomMarker :  GMSMarker{
     
     
 class ViewController: UIViewController, actionDelegate {
+    
+    //MARK: Properties
+    @IBOutlet var mapView: GMSMapView!
+    var reviewsMapping : Dictionary<String, [ReviewModel]> = Dictionary<String, [ReviewModel]>()
+    var locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    var state : displayState = .unselected
+    var currentOrientation : UIDeviceOrientation = UIDevice.current.orientation
+    var detailsMapping : Dictionary<String, FoodDetailModel> = Dictionary<String, FoodDetailModel>()
+    var currentSelectedRestrauntID : String = ""
+    var currentSelectedRestrauntDetail : FoodDetailModel? = nil{
+        didSet{
+            detailsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntDetail
+        }
+    }
+    var currentSelectedRestrauntReviews : [ReviewModel]? = nil{
+        didSet{
+            reviewsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntReviews
+        }
+    }
+    var photosVC : UIViewController = UIViewController()
+    @IBOutlet var infoView: FoodInfoView!
+    var httpClient : HttpRequestClient? = nil
+    
+    
+    
+    //MARK: UIView Methods
+    required init?(coder aDecoder: NSCoder) {
+        GMSServices.provideAPIKey(API_KEY)
+        super.init(coder: aDecoder)
+    }
+    override func viewWillLayoutSubviews() {
+        updateFrame()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //        for family: String in UIFont.familyNames
+        //        {
+        //            print("\(family)")
+        //            for names: String in UIFont.fontNames(forFamilyName: family)
+        //            {
+        //                print("== \(names)")
+        //            }
+        //        }
+        self.httpClient = HttpRequestClient(customer: self);
+        infoView.actionDelegate = self
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        currentOrientation = UIDevice.current.orientation
+        
+        infoView.layer.cornerRadius = 10.0
+        mapView.layer.cornerRadius = 10.0
+        
+        mapView.isMyLocationEnabled = true
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        currentOrientation = UIDevice.current.orientation
+        UIView.animate(withDuration: 0.5, animations: {self.updateFrame(size)})
+    }
+    
+    //MARK: Layout
+    func updateFrame(_ size: CGSize? = nil){
+        var viewSize = self.view.frame.size
+        let currentOrientationStatus = UIApplication.shared.statusBarOrientation
+        if(size != nil){
+            viewSize = size!
+        }
+    
+        switch state {
+        case .selected:
+            if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
+                infoView.frame = CGRect.init(x: 10, y: TOP_BUFFER, width: viewSize.width-20, height: viewSize.height-100)
+//                [self.infoView bounceIntoView:self.view direction:DCAnimationDirectionTop];
+                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y + GAP, width: viewSize.width-20, height: mapView.frame.height)
+                
+            }
+            else{
+                infoView.frame = CGRect.init(x: 5, y: TOP_BUFFER, width: viewSize.width-10, height: viewSize.height-40)
+                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height:mapView.frame.height)
+            }
+            break;
+        case .unselected:
+            if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
+                mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
+                infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
+            }
+            else{
+                mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
+                infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
+            }
+            break;
+        }
+    }
+    
+    //MARK: InfoView Tap Delegate Methods
     func didTapReviews() {
         if infoView.isDisplayingReviews{
-            self.infoView.reviewDisplayView.removeFromSuperview()
-
-            self.infoView.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.zero, reviewsToDisplay: [])
-            infoView.isDisplayingReviews = false
-            infoView.layoutSubviews()
+            UIView.animate(withDuration: 0.8, animations: {
+                self.infoView.isAnimating  = true
+                self.infoView.reviewDisplayView.frame = CGRect.init(x: self.infoView.reviewDisplayView.frame.origin.x, y: self.infoView.reviewDisplayView.frame.origin.y, width: self.infoView.reviewDisplayView.frame.width, height: 0)
+                
+            }, completion:{_ in
+                self.infoView.isAnimating = false
+                self.infoView.reviewDisplayView.removeFromSuperview()
+                self.infoView.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.zero, reviewsToDisplay: [])
+                self.infoView.isDisplayingReviews = false
+                self.infoView.layoutSubviews()
+                
+            })
+            
+            
+            
         }
         else{
             if let _reviews = currentSelectedRestrauntReviews{
@@ -74,112 +190,15 @@ class ViewController: UIViewController, actionDelegate {
         self.present(photosVC, animated: true, completion:nil)
     }
     
-    @IBOutlet var mapView: GMSMapView!
-    var reviewsMapping : Dictionary<String, [ReviewModel]> = Dictionary<String, [ReviewModel]>()
-    var locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
-    var state : displayState = .unselected
-    var currentOrientation : UIDeviceOrientation = UIDevice.current.orientation
-    var detailsMapping : Dictionary<String, FoodDetailModel> = Dictionary<String, FoodDetailModel>()
-    var currentSelectedRestrauntID : String = ""
-    var currentSelectedRestrauntDetail : FoodDetailModel? = nil{
-        didSet{
-            detailsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntDetail
-        }
-    }
-    var currentSelectedRestrauntReviews : [ReviewModel]? = nil{
-        didSet{
-            reviewsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntReviews
-        }
-    }
-    var photosVC : UIViewController = UIViewController()
-    
-    @IBOutlet var infoView: FoodInfoView!
-    
-
+    //MapView Tap Methods
     @objc func didTap(){
-        state = .unselected
-        UIView.animate(withDuration: 1.0, animations: {
-            self.view.backgroundColor = UIColor.lightGray
-            self.infoView.isHidden = true;
-            self.updateFrame()})
-    }
-    required init?(coder aDecoder: NSCoder) {
-        GMSServices.provideAPIKey(API_KEY)
-        super.init(coder: aDecoder)
-    }
-    
-    func updateFrame(_ size: CGSize? = nil){
-        var viewSize = self.view.frame.size
-        let currentOrientationStatus = UIApplication.shared.statusBarOrientation
-        if(size != nil){
-            viewSize = size!
+        if(state == .selected){
+            state = .unselected
+            UIView.animate(withDuration: 1.0, animations: {
+                self.view.backgroundColor = UIColor.lightGray
+                self.infoView.isHidden = true;
+                self.updateFrame()})
         }
-    
-        switch state {
-        case .selected:
-            if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
-                infoView.frame = CGRect.init(x: 10, y: TOP_BUFFER, width: viewSize.width-20, height: viewSize.height-185)
-//                [self.infoView bounceIntoView:self.view direction:DCAnimationDirectionTop];
-                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y + GAP, width: viewSize.width-20, height: mapView.frame.height)
-                
-            }
-            else{
-                infoView.frame = CGRect.init(x: 5, y: TOP_BUFFER, width: viewSize.width-10, height: viewSize.height-40)
-                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height:mapView.frame.height)
-            }
-            break;
-        case .unselected:
-            if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
-                mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
-                infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
-            }
-            else{
-                mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
-                infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
-            }
-            break;
-        }
-    }
-    override func viewWillLayoutSubviews() {
-        updateFrame()
-    }
-    var httpClient : HttpRequestClient? = nil
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        for family: String in UIFont.familyNames
-//        {
-//            print("\(family)")
-//            for names: String in UIFont.fontNames(forFamilyName: family)
-//            {
-//                print("== \(names)")
-//            }
-//        }
-        self.httpClient = HttpRequestClient(customer: self);
-        infoView.delegate = self
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-        currentOrientation = UIDevice.current.orientation
-
-        let tapGes = UITapGestureRecognizer.init(target: self, action: #selector(didTap))
-        infoView.addGestureRecognizer(tapGes)
-        infoView.layer.cornerRadius = 10.0
-        mapView.layer.cornerRadius = 10.0
-        
-        mapView.isMyLocationEnabled = true
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.delegate = self
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        currentOrientation = UIDevice.current.orientation
-        UIView.animate(withDuration: 0.5, animations: {self.updateFrame(size)})
     }
     
     func showFood(){
@@ -211,7 +230,7 @@ class ViewController: UIViewController, actionDelegate {
     }
 }
 
-
+    
 extension ViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
@@ -253,6 +272,9 @@ extension ViewController: CLLocationManagerDelegate {
 }
 
 extension ViewController : GMSMapViewDelegate{
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        didTap()
+    }
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let selectedMarker = marker as! CustomMarker
         //populate the infoView
@@ -277,7 +299,7 @@ extension ViewController : GMSMapViewDelegate{
         //Update frame
         state = .selected
         self.infoView.isHidden = false;
-
+        
 
         UIView.animate(withDuration: 1.0, animations: {
             self.view.backgroundColor = bgColor

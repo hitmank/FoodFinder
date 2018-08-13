@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,46 +15,41 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="s1M-Pt-QfC">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" red="0.96993559598922729" green="0.61913665261881501" blue="0.31396840146350463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork.png" translatesAutoresizingMaskIntoConstraints="NO" id="JOn-zM-ICp">
+                                <rect key="frame" x="92.666666666666686" y="316" width="190" height="190"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="190" id="JGJ-C3-jdf"/>
+                                    <constraint firstAttribute="width" constant="190" id="hEa-bw-2Mv"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biD-DK-2Sk">
-                                <rect key="frame" x="117" y="222" width="143" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.5581652481465289" green="0.78175434370561236" blue="0.96993559598922729" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" red="0.090873487293720245" green="0.60564881563186646" blue="0.56162852048873901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Food Finder">
-                                        <attributes>
-                                            <font key="NSFont" size="22" name="Didot"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <color key="highlightedColor" red="0.090873487293720245" green="0.60564881563186646" blue="0.56162852048873901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="shadowColor" red="0.173463434" green="0.14001289010000001" blue="0.13623243569999999" alpha="1" colorSpace="deviceRGB"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-SC-yAl">
+                                <rect key="frame" x="67.666666666666686" y="201" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Pak-eD-DKH"/>
+                                    <constraint firstAttribute="height" constant="128" id="lnQ-9Q-sL9"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.39215686274509803" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s1M-Pt-QfC" secondAttribute="trailing" id="HdN-S0-X0c"/>
-                            <constraint firstItem="s1M-Pt-QfC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jK9-Oy-EKl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="s1M-Pt-QfC" secondAttribute="bottom" id="tmf-yC-2sh"/>
-                            <constraint firstItem="s1M-Pt-QfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xfE-8V-alQ"/>
+                            <constraint firstItem="UnR-SC-yAl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9Yx-Hd-S2N"/>
+                            <constraint firstItem="UnR-SC-yAl" firstAttribute="centerX" secondItem="JOn-zM-ICp" secondAttribute="centerX" id="Yjq-Ye-2oo"/>
+                            <constraint firstItem="JOn-zM-ICp" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="mN0-4o-Sgr"/>
+                            <constraint firstItem="JOn-zM-ICp" firstAttribute="top" secondItem="UnR-SC-yAl" secondAttribute="bottom" constant="-13" id="qbs-P8-sNh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
         </scene>
     </scenes>
     <resources>
-        <image name="a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg" width="500" height="750"/>
+        <image name="iTunesArtwork.png" width="512" height="512"/>
+        <image name="title.png" width="517" height="207"/>
     </resources>
 </document>

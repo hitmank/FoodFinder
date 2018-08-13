@@ -20,26 +20,32 @@ import Motion
 import DCAnimationKit
 
 
-class FoodInfoView : UIView{
+class FoodInfoView : UIScrollView{
+    var isAnimating = false
     func displayReviews(_ reviews : [ReviewModel]){
-        self.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.init(x: 5, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail, width: self.frame.width-10, height: 0.20*self.frame.height), reviewsToDisplay: reviews)
-      
+        
+        self.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.init(x: 8, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail, width: self.frame.width-16,height: (self.frame.height - 10.0) - (self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail)), reviewsToDisplay: reviews)
+        let height = self.reviewDisplayView.frame.height
+         self.reviewDisplayView.frame = CGRect.init(x: self.reviewDisplayView.frame.origin.x, y: self.reviewDisplayView.frame.origin.y, width: self.reviewDisplayView.frame.width, height: 0)
+         self.addSubview(self.reviewDisplayView);
         UIView.animate(withDuration: 1.0, animations: {
+           
+ self.reviewDisplayView.frame = CGRect.init(x: self.reviewDisplayView.frame.origin.x, y: self.reviewDisplayView.frame.origin.y, width: self.reviewDisplayView.frame.width, height: height)
 //            self.reviewDisplayView!.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.detailView.frame.origin.y, width: self.detailView.frame.width, height: 50)
-            self.detailView.frame = CGRect.init(x: 5, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail + self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
+            self.detailView.frame = CGRect.init(x: 5, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail + height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
             
             
             
         }, completion: { _ in
                 
-              self.addSubview(self.reviewDisplayView);
+            
             
             
         })
     }
-    var delegate : actionDelegate? = nil{
+    var actionDelegate : actionDelegate? = nil{
         didSet{
-            self.mainImageView.delegate = delegate
+            self.mainImageView.delegate = actionDelegate
         }
     }
     var titleView : TitleView = TitleView()
@@ -47,6 +53,7 @@ class FoodInfoView : UIView{
     var mainImageView : ImageViewer = ImageViewer.init(frame: CGRect.zero)
     let offset_MainImageAndDetail : CGFloat = 8.0
     var reviewDisplayView : ReviewDisplayView = ReviewDisplayView.init(frame: CGRect.zero, reviewsToDisplay: [])
+
     var detailView : DetailView = DetailView()
     var isDisplayingReviews  = false
     var foodObject : FoodModel? = nil{
@@ -65,22 +72,45 @@ class FoodInfoView : UIView{
     }
     
     override func layoutSubviews() {
-        if(titleView.titleLabel.frame.height == 0){
-            titleView.updateLayout()
+        self.reviewDisplayView.clipsToBounds = true
+
+        if(!isAnimating){
+            if(titleView.titleLabel.frame.height == 0){
+                titleView.updateLayout()
+            }
+            
+            titleView.frame = CGRect.init(x: 0, y: 4, width: self.frame.width , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
+            
+            mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
+            mainImageView.updateLayout()
+            
+            
+           self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
+            
+            self.addSubview(titleView)
+            self.addSubview(mainImageView)
+            self.addSubview(detailView)
         }
-        
-        titleView.frame = CGRect.init(x: 0, y: 4, width: self.frame.width , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
-        
-        mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
-        mainImageView.updateLayout()
-        
-        
-       self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
-        
-        self.addSubview(titleView)
-        self.addSubview(mainImageView)
-        self.addSubview(detailView)
-        
+        else{
+            UIView.animate(withDuration: 0.8, animations: {
+                
+                if(self.titleView.titleLabel.frame.height == 0){
+                    self.titleView.updateLayout()
+                }
+                
+                self.titleView.frame = CGRect.init(x: 0, y: 4, width: self.frame.width , height: self.titleView.titleLabel.frame.height + self.titleView.descLabel.frame.height + self.titleView.labelOffset )
+                
+                self.mainImageView.frame = CGRect.init(x: 5.0, y: self.titleView.frame.size.height + self.titleView.frame.origin.y + self.offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
+                self.mainImageView.updateLayout()
+                
+                
+                self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
+                
+                self.addSubview(self.titleView)
+                self.addSubview(self.mainImageView)
+                self.addSubview(self.detailView)
+            })
+        }
     }
     
     func animateViews(){
@@ -95,8 +125,8 @@ class TitleView : UIView {
     var desc : String = ""
     var titleLabel : UILabel = UILabel.init(frame: CGRect.zero)
     var descLabel : UILabel = UILabel.init(frame: CGRect.zero)
-    
-    let titleLabelFont = "Audrey-Bold"
+//    "Audrey-Bold"
+    let titleLabelFont = "Billabong"
     let descLabelFont = "Cochin"
     let labelOffset : CGFloat = 4.0
     
@@ -110,7 +140,7 @@ class TitleView : UIView {
     }
     
     func updateLayout(){
-        titleLabel.font = UIFont.init(name: titleLabelFont, size: 35)
+        titleLabel.font = UIFont.init(name: titleLabelFont, size: 38)
         titleLabel.text = title
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.sizeToFit()
@@ -164,7 +194,10 @@ class ImageViewer : UIView {
 
         showMenuButton.expand(into: self, finished: {self.showMoreButton.expand(into: self, finished: {self.showReviewsButton.expand(into: self, finished: {})})})
         
+        let attributedString = NSMutableAttributedString(string: showMenuButton.title(for: .normal)!)
         
+            attributedString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 2, range: NSMakeRange(0, attributedString.length))
+        showMenuButton.setAttributedTitle(attributedString, for: .normal)
     }
     func updateLayout(){
     
@@ -206,6 +239,7 @@ class ImageViewer : UIView {
         showMenuButton.center = CGPoint.init(x: buttonXcenter, y: self.frame.height/2 )
         showMenuButton.inkStyle = .unbounded
         showMenuButton.maximumSize = CGSize.init(width: 0.3*self.frame.width, height: showMoreButton.frame.height)
+        showMenuButton.setEnabled(false, animated: true)
         
         showReviewsButton.frame = CGRect.init(x: 0, y: 0, width: showMoreButton.frame.width, height: showMoreButton.frame.height)
         showReviewsButton.center = CGPoint.init(x: buttonXcenter, y: self.frame.height/2  + showReviewsButton.frame.height + 5.0)
@@ -237,10 +271,14 @@ class ImageViewer : UIView {
         let typographyScheme = MDCTypographyScheme()
         //Reviews Button
         let colorSchemeReviewsButton = MDCSemanticColorScheme()
-        colorSchemeReviewsButton.primaryColor = UIColor(red: CGFloat(0x1a) / 255.0,
-                                                     green: CGFloat(0x2a) / 255.0,
-                                                     blue: CGFloat(0x6c) / 255.0,
-                                                     alpha: 1)
+        colorSchemeReviewsButton.primaryColor = UIColor(red: CGFloat(0xc4) / 255.0,
+                                                        green: CGFloat(0xe0) / 255.0,
+                                                        blue: CGFloat(0xe9) / 255.0,
+                                                        alpha: 1)
+//            UIColor(red: CGFloat(0x1a) / 255.0,
+//                                                     green: CGFloat(0x2a) / 255.0,
+//                                                     blue: CGFloat(0x6c) / 255.0,
+//                                                     alpha: 1)
         colorSchemeReviewsButton.primaryColorVariant = UIColor(red: CGFloat(0xe1) / 255.0,
                                                             green: CGFloat(0xee) / 255.0,
                                                             blue: CGFloat(0xc3) / 255.0,
@@ -257,7 +295,6 @@ class ImageViewer : UIView {
         MDCContainedButtonThemer.applyScheme(buttonSchemeReviewsButton, to: showReviewsButton)
         
         showReviewsButton.setTitle("Reviews", for: .normal)
-        
         
         
         
@@ -287,10 +324,16 @@ class ImageViewer : UIView {
         //Photos Button
         let colorSchemePhotos = MDCSemanticColorScheme()
         //#06beb6
-        colorSchemePhotos.primaryColor = UIColor(red: CGFloat(0x06) / 255.0,
-                                           green: CGFloat(0xbe) / 255.0,
-                                           blue: CGFloat(0xb6) / 255.0,
-                                           alpha: 1)
+        //            UIColor(red: CGFloat(0x1a) / 255.0,
+        //                                                     green: CGFloat(0x2a) / 255.0,
+        //                                                     blue: CGFloat(0x6c) / 255.0,
+        //                                                     alpha: 1)
+
+        colorSchemePhotos.primaryColor = UIColor(red: CGFloat(0x1a) / 255.0,green: CGFloat(0x2a) / 255.0,blue: CGFloat(0x6c) / 255.0,alpha: 1)
+//            UIColor(red: CGFloat(0x06) / 255.0,
+//                                           green: CGFloat(0xbe) / 255.0,
+//                                           blue: CGFloat(0xb6) / 255.0,
+//                                           alpha: 1)
         colorSchemePhotos.primaryColorVariant = UIColor(red: CGFloat(0xe1) / 255.0,
                                                   green: CGFloat(0xee) / 255.0,
                                                   blue: CGFloat(0xc3) / 255.0,
@@ -311,7 +354,8 @@ class ImageViewer : UIView {
         showMoreButton.setTitleFont(UIFont.init(name: typographyScheme.button.fontName, size: 11), for: .normal)
         showMenuButton.setTitleFont(UIFont.init(name: typographyScheme.button.fontName, size: 11), for: .normal)
         showReviewsButton.setTitleFont(UIFont.init(name: typographyScheme.button.fontName, size: 11), for: .normal)
-        
+        showReviewsButton.setTitleColor(UIColor.black, for: .normal)
+
         updateLayout()
         MDCCardsColorThemer.applySemanticColorScheme(colorSchemePhotos, to: card)
         
@@ -416,15 +460,15 @@ class ReviewDisplayView : UIView{
             var currHeight = CGFloat.init(0);
             
             for review in reviewList{
-                let reviewView = ReviewView.init(frame: CGRect.init(x: CGFloat.init(0), y: currHeight, width: self.frame.width, height: self.frame.height/CGFloat.init(reviewList.count) ), reviewToDisplay: review)
+                let reviewView = ReviewView.init(frame: CGRect.init(x: CGFloat.init(0), y: currHeight, width: self.frame.width, height: (self.frame.height/CGFloat.init(reviewList.count)) - 2.0 ), reviewToDisplay: review)
                 currHeight = currHeight + reviewView.frame.height + 6.0
                 self.addSubview(reviewView)
                 
             }
             
-            if(currHeight > self.frame.height){
-                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: currHeight)
-            }
+//            if(currHeight > self.frame.height){
+//                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: currHeight)
+//            }
         }
     }
     
@@ -452,10 +496,13 @@ class ReviewView: UIView {
     init(frame: CGRect, reviewToDisplay: ReviewModel) {
          review = reviewToDisplay
         super.init(frame: frame)
-        self.layer.borderWidth = 0.1
-        self.layer.cornerRadius = 0.8
+//        self.layer.borderWidth = 0.1
+        self.layer.cornerRadius = 8.0
         self.clipsToBounds = true;
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = UIColor(red: CGFloat(0xc4) / 255.0,
+                                       green: CGFloat(0xe0) / 255.0,
+                                       blue: CGFloat(0xe9) / 255.0,
+                                       alpha: 1)
         
         //Set text
         userLabel.text = review.user.name
@@ -468,20 +515,22 @@ class ReviewView: UIView {
         reviewTextView.font = UIFont.init(name: "Cochin", size: 11)
         reviewTextView.backgroundColor = UIColor.clear
         reviewTextView.isEditable = false
+        reviewTextView.isScrollEnabled = true
+        reviewTextView.clipsToBounds = false
         
         //Set frame
         userLabel.sizeToFit()
         userLabel.frame = CGRect.init(x: 3, y: 3, width: userLabel.frame.width, height: userLabel.frame.height)
         
         ratingLabel.sizeToFit()
-        ratingLabel.frame = CGRect.init(x: self.frame.width - ratingLabel.frame.width, y: 3, width: ratingLabel.frame.width, height: ratingLabel.frame.height)
+        ratingLabel.frame = CGRect.init(x: self.frame.width - ratingLabel.frame.width - 4.0, y: 3, width: ratingLabel.frame.width, height: ratingLabel.frame.height)
         
         reviewTextView.sizeToFit()
         let yPos = userLabel.frame.height > ratingLabel.frame.height ? userLabel.frame.height : ratingLabel.frame.height
-        let width = reviewTextView.frame.width > self.frame.width ? self.frame.width : reviewTextView.frame.width
+//        let width = reviewTextView.frame.width > self.frame.width ? self.frame.width : reviewTextView.frame.width
 //        let height = yPos + reviewTextView.frame.height > self.frame.height ? self.frame.height - yPos : reviewTextView.frame.height
-        reviewTextView.frame = CGRect.init(x: 3, y: yPos + 6.0, width: width-6, height: reviewTextView.frame.height)
-        self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: yPos + reviewTextView.frame.height + 2.0)
+        reviewTextView.frame = CGRect.init(x: 3, y: yPos + 6.0, width: self.frame.width-6, height: self.frame.height - (yPos+6))
+        self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
                     self.addSubview(userLabel)
         self.addSubview(ratingLabel)
          self.addSubview(reviewTextView)

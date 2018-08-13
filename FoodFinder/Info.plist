@@ -2,27 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>To get your location</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Audrey-Bold.otf</string>
-		<string>Audrey-Medium.otf</string>
-		<string>BebasNeue-Bold.ttf</string>
-		<string>BebasNeue-Book.ttf</string>
-		<string>Audrey-Normal.otf</string>
-		<string>BebasNeue-Regular.ttf</string>
-		<string>BebasNeue-Thin.ttf</string>
-		<string>Audrey-MediumOblique.otf</string>
-		<string></string>
-		<string>MarkerFelt.ttf</string>
-	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Get current location</string>
-	<key>NSLocationUsageDescription</key>
-	<string>To get your current location</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>FindFood</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -39,6 +22,29 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To get your location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>To get your current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Get current location</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>EBGaramond12-AllSC.ttf</string>
+		<string>EBGaramondSC08-Regular.ttf</string>
+		<string>EBGaramond12-Regular.ttf</string>
+		<string>Audrey-Bold.otf</string>
+		<string>TRAJANUS.TTF</string>
+		<string>Audrey-Medium.otf</string>
+		<string>BebasNeue-Bold.ttf</string>
+		<string>BebasNeue-Book.ttf</string>
+		<string>Audrey-Normal.otf</string>
+		<string>BebasNeue-Regular.ttf</string>
+		<string>BebasNeue-Thin.ttf</string>
+		<string>Audrey-MediumOblique.otf</string>
+		<string>Billabong.ttf</string>
+		<string>MarkerFelt.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -50,8 +56,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

@@ -8,25 +8,31 @@ print("== \(names)")
 }
 }
 
-DIN Condensed
-== DINCondensed-Bold
-Copperplate
-== Copperplate-Light
-== Copperplate
-== Copperplate-Bold
-Heiti SC
-Apple SD Gothic Neo
-== AppleSDGothicNeo-Thin
-== AppleSDGothicNeo-Light
-== AppleSDGothicNeo-Regular
-== AppleSDGothicNeo-Bold
-== AppleSDGothicNeo-SemiBold
-== AppleSDGothicNeo-UltraLight
-== AppleSDGothicNeo-Medium
-Thonburi
-== Thonburi
-== Thonburi-Light
-== Thonburi-Bold
+Devanagari Sangam MN
+== DevanagariSangamMN
+== DevanagariSangamMN-Bold
+Avenir Next
+== AvenirNext-Medium
+== AvenirNext-DemiBoldItalic
+== AvenirNext-DemiBold
+== AvenirNext-HeavyItalic
+== AvenirNext-Regular
+== AvenirNext-Italic
+== AvenirNext-MediumItalic
+== AvenirNext-UltraLightItalic
+== AvenirNext-BoldItalic
+== AvenirNext-Heavy
+== AvenirNext-Bold
+== AvenirNext-UltraLight
+Kohinoor Devanagari
+== KohinoorDevanagari-Regular
+== KohinoorDevanagari-Light
+== KohinoorDevanagari-Semibold
+Times New Roman
+== TimesNewRomanPS-ItalicMT
+== TimesNewRomanPS-BoldItalicMT
+== TimesNewRomanPS-BoldMT
+== TimesNewRomanPSMT
 Gill Sans
 == GillSans-Italic
 == GillSans-SemiBold
@@ -37,38 +43,91 @@ Gill Sans
 == GillSans-SemiBoldItalic
 == GillSans-BoldItalic
 == GillSans-LightItalic
-Marker Felt
-== MarkerFelt-Thin
-== MarkerFelt
-== MarkerFelt-Wide
-Hiragino Maru Gothic ProN
-== HiraMaruProN-W4
-Courier New
-== CourierNewPS-ItalicMT
-== CourierNewPSMT
-== CourierNewPS-BoldItalicMT
-== CourierNewPS-BoldMT
+EB Garamond
+== EBGaramond12-Regular
+Kailasa
+== Kailasa-Bold
+== Kailasa
+Bradley Hand
+== BradleyHandITCTT-Bold
+PingFang HK
+== PingFangHK-Medium
+== PingFangHK-Thin
+== PingFangHK-Regular
+== PingFangHK-Ultralight
+== PingFangHK-Semibold
+== PingFangHK-Light
+Savoye LET
+== SavoyeLetPlain
+EB Garamond 12 All SC
+== EBGaramond12-AllSC
+Trajanus Roman
+== TrajanusRoman
+Trebuchet MS
+== TrebuchetMS-Bold
+== TrebuchetMS-Italic
+== Trebuchet-BoldItalic
+== TrebuchetMS
+Baskerville
+== Baskerville-SemiBoldItalic
+== Baskerville-SemiBold
+== Baskerville-BoldItalic
+== Baskerville
+== Baskerville-Bold
+== Baskerville-Italic
+Audrey
+== Audrey-Medium
+== Audrey-Normal
+== Audrey-Bold
+== Audrey-MediumOblique
+Futura
+== Futura-CondensedExtraBold
+== Futura-Medium
+== Futura-Bold
+== Futura-CondensedMedium
+== Futura-MediumItalic
+Arial Hebrew
+== ArialHebrew-Bold
+== ArialHebrew-Light
+== ArialHebrew
+Bodoni 72
+== BodoniSvtyTwoITCTT-Bold
+== BodoniSvtyTwoITCTT-BookIta
+== BodoniSvtyTwoITCTT-Book
+Hoefler Text
+== HoeflerText-Italic
+== HoeflerText-Black
+== HoeflerText-Regular
+== HoeflerText-BlackItalic
+Optima
+== Optima-ExtraBlack
+== Optima-BoldItalic
+== Optima-Italic
+== Optima-Regular
+== Optima-Bold
+EB Garamond SC
+== EBGaramondSC08-Regular
+DIN Condensed
+== DINCondensed-Bold
+Noto Nastaliq Urdu
+== NotoNastaliqUrdu
+Charter
+== Charter-BlackItalic
+== Charter-Bold
+== Charter-Roman
+== Charter-Black
+== Charter-BoldItalic
+== Charter-Italic
+Heiti TC
+Geeza Pro
+== GeezaPro-Bold
+== GeezaPro
+Bodoni Ornaments
+== BodoniOrnamentsITCTT
 Kohinoor Telugu
 == KohinoorTelugu-Regular
 == KohinoorTelugu-Medium
 == KohinoorTelugu-Light
-Heiti TC
-Avenir Next Condensed
-== AvenirNextCondensed-Heavy
-== AvenirNextCondensed-MediumItalic
-== AvenirNextCondensed-Regular
-== AvenirNextCondensed-UltraLightItalic
-== AvenirNextCondensed-Medium
-== AvenirNextCondensed-HeavyItalic
-== AvenirNextCondensed-DemiBoldItalic
-== AvenirNextCondensed-Bold
-== AvenirNextCondensed-DemiBold
-== AvenirNextCondensed-BoldItalic
-== AvenirNextCondensed-Italic
-== AvenirNextCondensed-UltraLight
-Tamil Sangam MN
-== TamilSangamMN
-== TamilSangamMN-Bold
 Helvetica Neue
 == HelveticaNeue-UltraLightItalic
 == HelveticaNeue-Medium
@@ -84,31 +143,116 @@ Helvetica Neue
 == HelveticaNeue
 == HelveticaNeue-CondensedBold
 == HelveticaNeue-BoldItalic
-Gurmukhi MN
-== GurmukhiMN-Bold
-== GurmukhiMN
-Georgia
-== Georgia-BoldItalic
-== Georgia-Italic
-== Georgia
-== Georgia-Bold
-Times New Roman
-== TimesNewRomanPS-ItalicMT
-== TimesNewRomanPS-BoldItalicMT
-== TimesNewRomanPS-BoldMT
-== TimesNewRomanPSMT
+Party LET
+== PartyLetPlain
+Symbol
+== Symbol
+Bangla Sangam MN
+Hiragino Sans
+== HiraginoSans-W3
+== HiraginoSans-W6
+Hiragino Maru Gothic ProN
+== HiraMaruProN-W4
+Cochin
+== Cochin-Italic
+== Cochin-Bold
+== Cochin
+== Cochin-BoldItalic
+Euphemia UCAS
+== EuphemiaUCAS
+== EuphemiaUCAS-Italic
+== EuphemiaUCAS-Bold
+Academy Engraved LET
+== AcademyEngravedLetPlain
+Helvetica
+== Helvetica-Oblique
+== Helvetica-BoldOblique
+== Helvetica
+== Helvetica-Light
+== Helvetica-Bold
+== Helvetica-LightOblique
+American Typewriter
+== AmericanTypewriter-CondensedBold
+== AmericanTypewriter-Condensed
+== AmericanTypewriter-CondensedLight
+== AmericanTypewriter
+== AmericanTypewriter-Bold
+== AmericanTypewriter-Semibold
+== AmericanTypewriter-Light
+Didot
+== Didot-Bold
+== Didot
+== Didot-Italic
+Courier New
+== CourierNewPS-ItalicMT
+== CourierNewPSMT
+== CourierNewPS-BoldItalicMT
+== CourierNewPS-BoldMT
+Courier
+== Courier-BoldOblique
+== Courier-Oblique
+== Courier
+== Courier-Bold
+Rockwell
+== Rockwell-Italic
+== Rockwell-Regular
+== Rockwell-Bold
+== Rockwell-BoldItalic
+Billabong
+== Billabong
+Palatino
+== Palatino-Italic
+== Palatino-Roman
+== Palatino-BoldItalic
+== Palatino-Bold
+Malayalam Sangam MN
+== MalayalamSangamMN-Bold
+== MalayalamSangamMN
+Mishafi
+== DiwanMishafi
+Snell Roundhand
+== SnellRoundhand
+== SnellRoundhand-Bold
+== SnellRoundhand-Black
+Avenir Next Condensed
+== AvenirNextCondensed-Heavy
+== AvenirNextCondensed-MediumItalic
+== AvenirNextCondensed-Regular
+== AvenirNextCondensed-UltraLightItalic
+== AvenirNextCondensed-Medium
+== AvenirNextCondensed-HeavyItalic
+== AvenirNextCondensed-DemiBoldItalic
+== AvenirNextCondensed-Bold
+== AvenirNextCondensed-DemiBold
+== AvenirNextCondensed-BoldItalic
+== AvenirNextCondensed-Italic
+== AvenirNextCondensed-UltraLight
+Heiti SC
+Damascus
+== DamascusBold
+== DamascusLight
+== Damascus
+== DamascusMedium
+== DamascusSemiBold
+Lao Sangam MN
+== LaoSangamMN
+Oriya Sangam MN
+== OriyaSangamMN
+== OriyaSangamMN-Bold
+Papyrus
+== Papyrus-Condensed
+== Papyrus
+Copperplate
+== Copperplate-Light
+== Copperplate
+== Copperplate-Bold
+Thonburi
+== Thonburi
+== Thonburi-Light
+== Thonburi-Bold
 Sinhala Sangam MN
 == SinhalaSangamMN-Bold
 == SinhalaSangamMN
-Arial Rounded MT Bold
-== ArialRoundedMTBold
-Kailasa
-== Kailasa-Bold
-== Kailasa
-Kohinoor Devanagari
-== KohinoorDevanagari-Regular
-== KohinoorDevanagari-Light
-== KohinoorDevanagari-Semibold
 Kohinoor Bangla
 == KohinoorBangla-Regular
 == KohinoorBangla-Semibold
@@ -117,8 +261,44 @@ Chalkboard SE
 == ChalkboardSE-Bold
 == ChalkboardSE-Light
 == ChalkboardSE-Regular
+Noteworthy
+== Noteworthy-Bold
+== Noteworthy-Light
+Farah
+== Farah
+Arial
+== Arial-BoldMT
+== Arial-BoldItalicMT
+== Arial-ItalicMT
+== ArialMT
+Hiragino Mincho ProN
+== HiraMinProN-W3
+== HiraMinProN-W6
+Georgia
+== Georgia-BoldItalic
+== Georgia-Italic
+== Georgia
+== Georgia-Bold
+Verdana
+== Verdana-Italic
+== Verdana
+== Verdana-Bold
+== Verdana-BoldItalic
+DIN Alternate
+== DINAlternate-Bold
 Apple Color Emoji
 == AppleColorEmoji
+TharLon
+== TharLon
+PingFang SC
+== PingFangSC-Medium
+== PingFangSC-Semibold
+== PingFangSC-Light
+== PingFangSC-Ultralight
+== PingFangSC-Regular
+== PingFangSC-Thin
+Chalkduster
+== Chalkduster
 PingFang TC
 == PingFangTC-Regular
 == PingFangTC-Thin
@@ -126,21 +306,43 @@ PingFang TC
 == PingFangTC-Semibold
 == PingFangTC-Light
 == PingFangTC-Ultralight
-Gujarati Sangam MN
-== GujaratiSangamMN
-== GujaratiSangamMN-Bold
-Geeza Pro
-== GeezaPro-Bold
-== GeezaPro
-Damascus
-== DamascusBold
-== DamascusLight
-== Damascus
-== DamascusMedium
-== DamascusSemiBold
-Noteworthy
-== Noteworthy-Bold
-== Noteworthy-Light
+Tamil Sangam MN
+== TamilSangamMN
+== TamilSangamMN-Bold
+Droid Sans
+== DroidSans
+Khmer Sangam MN
+== KhmerSangamMN
+Apple SD Gothic Neo
+== AppleSDGothicNeo-Thin
+== AppleSDGothicNeo-Light
+== AppleSDGothicNeo-Regular
+== AppleSDGothicNeo-Bold
+== AppleSDGothicNeo-SemiBold
+== AppleSDGothicNeo-UltraLight
+== AppleSDGothicNeo-Medium
+Gurmukhi MN
+== GurmukhiMN-Bold
+== GurmukhiMN
+Arial Rounded MT Bold
+== ArialRoundedMTBold
+Al Nile
+== AlNile
+== AlNile-Bold
+Bodoni 72 Smallcaps
+== BodoniSvtyTwoSCITCTT-Book
+Marker Felt
+== MarkerFelt-Thin
+== MarkerFelt
+== MarkerFelt-Wide
+Kannada Sangam MN
+== KannadaSangamMN-Bold
+== KannadaSangamMN
+Menlo
+== Menlo-BoldItalic
+== Menlo-Bold
+== Menlo-Italic
+== Menlo-Regular
 Avenir
 == Avenir-Oblique
 == Avenir-HeavyOblique
@@ -154,210 +356,20 @@ Avenir
 == Avenir-MediumOblique
 == Avenir-Book
 == Avenir-LightOblique
-Mishafi
-== DiwanMishafi
-Academy Engraved LET
-== AcademyEngravedLetPlain
-Futura
-== Futura-CondensedExtraBold
-== Futura-Medium
-== Futura-Bold
-== Futura-CondensedMedium
-== Futura-MediumItalic
-Party LET
-== PartyLetPlain
-Kannada Sangam MN
-== KannadaSangamMN-Bold
-== KannadaSangamMN
-Arial Hebrew
-== ArialHebrew-Bold
-== ArialHebrew-Light
-== ArialHebrew
-Farah
-== Farah
-Arial
-== Arial-BoldMT
-== Arial-BoldItalicMT
-== Arial-ItalicMT
-== ArialMT
-Chalkduster
-== Chalkduster
-Kefa
-== Kefa-Regular
-Hoefler Text
-== HoeflerText-Italic
-== HoeflerText-Black
-== HoeflerText-Regular
-== HoeflerText-BlackItalic
-Optima
-== Optima-ExtraBlack
-== Optima-BoldItalic
-== Optima-Italic
-== Optima-Regular
-== Optima-Bold
-Palatino
-== Palatino-Italic
-== Palatino-Roman
-== Palatino-BoldItalic
-== Palatino-Bold
-Malayalam Sangam MN
-== MalayalamSangamMN-Bold
-== MalayalamSangamMN
-Al Nile
-== AlNile
-== AlNile-Bold
-Lao Sangam MN
-== LaoSangamMN
-Bradley Hand
-== BradleyHandITCTT-Bold
-Hiragino Mincho ProN
-== HiraMinProN-W3
-== HiraMinProN-W6
-PingFang HK
-== PingFangHK-Medium
-== PingFangHK-Thin
-== PingFangHK-Regular
-== PingFangHK-Ultralight
-== PingFangHK-Semibold
-== PingFangHK-Light
-Helvetica
-== Helvetica-Oblique
-== Helvetica-BoldOblique
-== Helvetica
-== Helvetica-Light
-== Helvetica-Bold
-== Helvetica-LightOblique
-Courier
-== Courier-BoldOblique
-== Courier-Oblique
-== Courier
-== Courier-Bold
-Cochin
-== Cochin-Italic
-== Cochin-Bold
-== Cochin
-== Cochin-BoldItalic
-Trebuchet MS
-== TrebuchetMS-Bold
-== TrebuchetMS-Italic
-== Trebuchet-BoldItalic
-== TrebuchetMS
-Droid Sans
-== DroidSans
-Devanagari Sangam MN
-== DevanagariSangamMN
-== DevanagariSangamMN-Bold
-Oriya Sangam MN
-== OriyaSangamMN
-== OriyaSangamMN-Bold
-Rockwell
-== Rockwell-Italic
-== Rockwell-Regular
-== Rockwell-Bold
-== Rockwell-BoldItalic
-Snell Roundhand
-== SnellRoundhand
-== SnellRoundhand-Bold
-== SnellRoundhand-Black
-Zapf Dingbats
-== ZapfDingbatsITC
-Bodoni 72
-== BodoniSvtyTwoITCTT-Bold
-== BodoniSvtyTwoITCTT-BookIta
-== BodoniSvtyTwoITCTT-Book
-Verdana
-== Verdana-Italic
-== Verdana
-== Verdana-Bold
-== Verdana-BoldItalic
-American Typewriter
-== AmericanTypewriter-CondensedBold
-== AmericanTypewriter-Condensed
-== AmericanTypewriter-CondensedLight
-== AmericanTypewriter
-== AmericanTypewriter-Bold
-== AmericanTypewriter-Semibold
-== AmericanTypewriter-Light
-Avenir Next
-== AvenirNext-Medium
-== AvenirNext-DemiBoldItalic
-== AvenirNext-DemiBold
-== AvenirNext-HeavyItalic
-== AvenirNext-Regular
-== AvenirNext-Italic
-== AvenirNext-MediumItalic
-== AvenirNext-UltraLightItalic
-== AvenirNext-BoldItalic
-== AvenirNext-Heavy
-== AvenirNext-Bold
-== AvenirNext-UltraLight
-Baskerville
-== Baskerville-SemiBoldItalic
-== Baskerville-SemiBold
-== Baskerville-BoldItalic
-== Baskerville
-== Baskerville-Bold
-== Baskerville-Italic
-Khmer Sangam MN
-== KhmerSangamMN
-Didot
-== Didot-Bold
-== Didot
-== Didot-Italic
-TharLon
-== TharLon
-Savoye LET
-== SavoyeLetPlain
-Bodoni Ornaments
-== BodoniOrnamentsITCTT
-Symbol
-== Symbol
-Charter
-== Charter-BlackItalic
-== Charter-Bold
-== Charter-Roman
-== Charter-Black
-== Charter-BoldItalic
-== Charter-Italic
-Menlo
-== Menlo-BoldItalic
-== Menlo-Bold
-== Menlo-Italic
-== Menlo-Regular
-Noto Nastaliq Urdu
-== NotoNastaliqUrdu
-Bodoni 72 Smallcaps
-== BodoniSvtyTwoSCITCTT-Book
-DIN Alternate
-== DINAlternate-Bold
-Papyrus
-== Papyrus-Condensed
-== Papyrus
-Hiragino Sans
-== HiraginoSans-W3
-== HiraginoSans-W6
-PingFang SC
-== PingFangSC-Medium
-== PingFangSC-Semibold
-== PingFangSC-Light
-== PingFangSC-Ultralight
-== PingFangSC-Regular
-== PingFangSC-Thin
-Myanmar Sangam MN
-== MyanmarSangamMN
-== MyanmarSangamMN-Bold
-Zapfino
-== Zapfino
 Telugu Sangam MN
+Gujarati Sangam MN
+== GujaratiSangamMN
+== GujaratiSangamMN-Bold
 Bodoni 72 Oldstyle
 == BodoniSvtyTwoOSITCTT-BookIt
 == BodoniSvtyTwoOSITCTT-Book
 == BodoniSvtyTwoOSITCTT-Bold
-Euphemia UCAS
-== EuphemiaUCAS
-== EuphemiaUCAS-Italic
-== EuphemiaUCAS-Bold
-Bangla Sangam MN
-Audrey
-== Audrey-MediumOblique
-
+Myanmar Sangam MN
+== MyanmarSangamMN
+== MyanmarSangamMN-Bold
+Kefa
+== Kefa-Regular
+Zapf Dingbats
+== ZapfDingbatsITC
+Zapfino
+== Zapfino

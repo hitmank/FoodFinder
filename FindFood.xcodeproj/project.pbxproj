@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		565FF1EE211E5863008FD872 /* HttpRequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565FF1ED211E5863008FD872 /* HttpRequestClient.swift */; };
+		565FF1F02120E124008FD872 /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1EF2120E123008FD872 /* Billabong.ttf */; };
+		565FF1F22120E42B008FD872 /* TRAJANUS.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F12120E42B008FD872 /* TRAJANUS.TTF */; };
+		565FF1FA2120E4FF008FD872 /* EBGaramond08-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F32120E4FE008FD872 /* EBGaramond08-Italic.ttf */; };
+		565FF1FB2120E4FF008FD872 /* EBGaramond12-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F42120E4FF008FD872 /* EBGaramond12-Italic.ttf */; };
+		565FF1FC2120E4FF008FD872 /* EBGaramondSC12-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F52120E4FF008FD872 /* EBGaramondSC12-Regular.ttf */; };
+		565FF1FD2120E4FF008FD872 /* EBGaramond12-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F62120E4FF008FD872 /* EBGaramond12-Regular.ttf */; };
+		565FF1FE2120E4FF008FD872 /* EBGaramond08-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F72120E4FF008FD872 /* EBGaramond08-Regular.ttf */; };
+		565FF1FF2120E4FF008FD872 /* EBGaramond12-AllSC.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F82120E4FF008FD872 /* EBGaramond12-AllSC.ttf */; };
+		565FF2002120E4FF008FD872 /* EBGaramondSC08-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F92120E4FF008FD872 /* EBGaramondSC08-Regular.ttf */; };
+		565FF202212102C5008FD872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565FF201212102C5008FD872 /* Assets.xcassets */; };
+		565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20321210454008FD872 /* iTunesArtwork@3x.png */; };
+		565FF20621210A43008FD872 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20521210A43008FD872 /* title.png */; };
 		A1A3313164E0F866C678B561 /* Pods_FoodFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */; };
 		A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */; };
 		A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */; };
@@ -25,7 +37,6 @@
 		A4B4524121153F6D005F0680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4524021153F6D005F0680 /* AppDelegate.swift */; };
 		A4B4524321153F6D005F0680 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4524221153F6D005F0680 /* ViewController.swift */; };
 		A4B4524621153F6D005F0680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B4524421153F6D005F0680 /* Main.storyboard */; };
-		A4B4524821153F70005F0680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4B4524721153F70005F0680 /* Assets.xcassets */; };
 		A4B4524B21153F70005F0680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4B4524921153F70005F0680 /* LaunchScreen.storyboard */; };
 		A4B452532115476A005F0680 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A4B452522115476A005F0680 /* Podfile */; };
 		A4ECD1F02116587F008A4A7C /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ECD1EF2116587F008A4A7C /* FoodModel.swift */; };
@@ -37,6 +48,18 @@
 /* Begin PBXFileReference section */
 		035522093EBE1E84DE1A04E2 /* Pods-FoodFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder.release.xcconfig"; sourceTree = "<group>"; };
 		565FF1ED211E5863008FD872 /* HttpRequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestClient.swift; sourceTree = "<group>"; };
+		565FF1EF2120E123008FD872 /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Billabong.ttf; sourceTree = "<group>"; };
+		565FF1F12120E42B008FD872 /* TRAJANUS.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TRAJANUS.TTF; sourceTree = "<group>"; };
+		565FF1F32120E4FE008FD872 /* EBGaramond08-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond08-Italic.ttf"; sourceTree = "<group>"; };
+		565FF1F42120E4FF008FD872 /* EBGaramond12-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Italic.ttf"; sourceTree = "<group>"; };
+		565FF1F52120E4FF008FD872 /* EBGaramondSC12-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramondSC12-Regular.ttf"; sourceTree = "<group>"; };
+		565FF1F62120E4FF008FD872 /* EBGaramond12-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.ttf"; sourceTree = "<group>"; };
+		565FF1F72120E4FF008FD872 /* EBGaramond08-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond08-Regular.ttf"; sourceTree = "<group>"; };
+		565FF1F82120E4FF008FD872 /* EBGaramond12-AllSC.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-AllSC.ttf"; sourceTree = "<group>"; };
+		565FF1F92120E4FF008FD872 /* EBGaramondSC08-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramondSC08-Regular.ttf"; sourceTree = "<group>"; };
+		565FF201212102C5008FD872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		565FF20321210454008FD872 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
+		565FF20521210A43008FD872 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Light.ttf"; sourceTree = "<group>"; };
 		A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.ttf"; sourceTree = "<group>"; };
@@ -59,7 +82,6 @@
 		A4B4524021153F6D005F0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4B4524221153F6D005F0680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A4B4524521153F6D005F0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A4B4524721153F70005F0680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4B4524A21153F70005F0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4B4524C21153F70005F0680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4B452522115476A005F0680 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -117,10 +139,10 @@
 		A4B4523F21153F6D005F0680 /* FoodFinder */ = {
 			isa = PBXGroup;
 			children = (
+				565FF201212102C5008FD872 /* Assets.xcassets */,
 				A4B4524021153F6D005F0680 /* AppDelegate.swift */,
 				A4B4524221153F6D005F0680 /* ViewController.swift */,
 				A4B4524421153F6D005F0680 /* Main.storyboard */,
-				A4B4524721153F70005F0680 /* Assets.xcassets */,
 				A4B4524921153F70005F0680 /* LaunchScreen.storyboard */,
 				A4B4524C21153F70005F0680 /* Info.plist */,
 				A4ECD1EF2116587F008A4A7C /* FoodModel.swift */,
@@ -134,6 +156,17 @@
 		A4ECD1F321168733008A4A7C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				565FF20521210A43008FD872 /* title.png */,
+				565FF20321210454008FD872 /* iTunesArtwork@3x.png */,
+				565FF1F32120E4FE008FD872 /* EBGaramond08-Italic.ttf */,
+				565FF1F72120E4FF008FD872 /* EBGaramond08-Regular.ttf */,
+				565FF1F82120E4FF008FD872 /* EBGaramond12-AllSC.ttf */,
+				565FF1F42120E4FF008FD872 /* EBGaramond12-Italic.ttf */,
+				565FF1F62120E4FF008FD872 /* EBGaramond12-Regular.ttf */,
+				565FF1F92120E4FF008FD872 /* EBGaramondSC08-Regular.ttf */,
+				565FF1F52120E4FF008FD872 /* EBGaramondSC12-Regular.ttf */,
+				565FF1F12120E42B008FD872 /* TRAJANUS.TTF */,
+				565FF1EF2120E123008FD872 /* Billabong.ttf */,
 				A43873CD21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg */,
 				A43873C52117E8CA007E6142 /* Audrey-Bold.otf */,
 				A43873C42117E8CA007E6142 /* Audrey-BoldOblique.otf */,
@@ -199,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "FoodFinder" */;
+			buildConfigurationList = A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "FindFood" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -223,22 +256,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				A43873C92117E8CA007E6142 /* Audrey-Normal.otf in Resources */,
+				565FF1F02120E124008FD872 /* Billabong.ttf in Resources */,
 				A43873CE21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg in Resources */,
 				A4ECD1F721168D1A008A4A7C /* fontListt in Resources */,
 				A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */,
 				A4B4524B21153F70005F0680 /* LaunchScreen.storyboard in Resources */,
-				A4B4524821153F70005F0680 /* Assets.xcassets in Resources */,
 				A43873C72117E8CA007E6142 /* Audrey-MediumOblique.otf in Resources */,
 				A43873CC2117E8CA007E6142 /* Audrey-Medium.otf in Resources */,
+				565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */,
 				A4B452532115476A005F0680 /* Podfile in Resources */,
 				A43873BF2117E87F007E6142 /* BebasNeue-Book.ttf in Resources */,
+				565FF20621210A43008FD872 /* title.png in Resources */,
 				A43873C82117E8CA007E6142 /* Audrey-NormalOblique.otf in Resources */,
 				A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */,
+				565FF1FB2120E4FF008FD872 /* EBGaramond12-Italic.ttf in Resources */,
 				A43873CA2117E8CA007E6142 /* Audrey-BoldOblique.otf in Resources */,
+				565FF1FE2120E4FF008FD872 /* EBGaramond08-Regular.ttf in Resources */,
 				A4B4524621153F6D005F0680 /* Main.storyboard in Resources */,
 				A4ECD1F52116874F008A4A7C /* MarkerFelt.ttf in Resources */,
+				565FF1F22120E42B008FD872 /* TRAJANUS.TTF in Resources */,
+				565FF1FA2120E4FF008FD872 /* EBGaramond08-Italic.ttf in Resources */,
 				A43873C02117E87F007E6142 /* BebasNeue Thin.ttf in Resources */,
+				565FF1FF2120E4FF008FD872 /* EBGaramond12-AllSC.ttf in Resources */,
 				A43873CB2117E8CA007E6142 /* Audrey-Bold.otf in Resources */,
+				565FF1FC2120E4FF008FD872 /* EBGaramondSC12-Regular.ttf in Resources */,
+				565FF2002120E4FF008FD872 /* EBGaramondSC08-Regular.ttf in Resources */,
+				565FF1FD2120E4FF008FD872 /* EBGaramond12-Regular.ttf in Resources */,
+				565FF202212102C5008FD872 /* Assets.xcassets in Resources */,
 				A43873BE2117E87F007E6142 /* BebasNeue-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +525,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kb.FoodFinder;
+				PRODUCT_BUNDLE_IDENTIFIER = kb.FindFood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -501,7 +545,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kb.FoodFinder;
+				PRODUCT_BUNDLE_IDENTIFIER = kb.FindFood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -511,7 +555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "FoodFinder" */ = {
+		A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "FindFood" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4B4524D21153F70005F0680 /* Debug */,

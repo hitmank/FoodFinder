@@ -9,6 +9,7 @@
 #import "NYTPhotosOverlayView.h"
 #import "NYTPhotoCaptionViewLayoutWidthHinting.h"
 
+API_AVAILABLE(ios(9.0))
 @interface UIView (NYTSafeArea)
 
 @property (nonatomic, readonly, strong) UILayoutGuide *safeAreaLayoutGuide;
