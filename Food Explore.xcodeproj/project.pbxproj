@@ -20,6 +20,8 @@
 		565FF202212102C5008FD872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565FF201212102C5008FD872 /* Assets.xcassets */; };
 		565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20321210454008FD872 /* iTunesArtwork@3x.png */; };
 		565FF20621210A43008FD872 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20521210A43008FD872 /* title.png */; };
+		56F07F072121119B004988C5 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F062121119A004988C5 /* ic_launcher.png */; };
+		56F07F09212113B0004988C5 /* newLaunchTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F08212113B0004988C5 /* newLaunchTitle.png */; };
 		A1A3313164E0F866C678B561 /* Pods_FoodFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */; };
 		A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */; };
 		A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */; };
@@ -60,6 +62,8 @@
 		565FF201212102C5008FD872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		565FF20321210454008FD872 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		565FF20521210A43008FD872 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		56F07F062121119A004988C5 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
+		56F07F08212113B0004988C5 /* newLaunchTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newLaunchTitle.png; sourceTree = "<group>"; };
 		7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Light.ttf"; sourceTree = "<group>"; };
 		A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.ttf"; sourceTree = "<group>"; };
@@ -78,7 +82,7 @@
 		A4A52E052117C62200A29D92 /* libMaterialComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMaterialComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A52E072117C62200A29D92 /* libMDFInternationalization.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFInternationalization.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A52E092117C62200A29D92 /* libMDFTextAccessibility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFTextAccessibility.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4B4523D21153F6D005F0680 /* FindFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B4523D21153F6D005F0680 /* Food Explore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food Explore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B4524021153F6D005F0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4B4524221153F6D005F0680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A4B4524521153F6D005F0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,7 +125,7 @@
 			children = (
 				A4ECD1F321168733008A4A7C /* Resources */,
 				A4B452522115476A005F0680 /* Podfile */,
-				A4B4523F21153F6D005F0680 /* FindFood */,
+				A4B4523F21153F6D005F0680 /* Food Explore */,
 				A4B4523E21153F6D005F0680 /* Products */,
 				D58F7575A0719DFA168EDF8D /* Pods */,
 				07B1B6310F4A725DDE048B91 /* Frameworks */,
@@ -131,12 +135,12 @@
 		A4B4523E21153F6D005F0680 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A4B4523D21153F6D005F0680 /* FindFood.app */,
+				A4B4523D21153F6D005F0680 /* Food Explore.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A4B4523F21153F6D005F0680 /* FindFood */ = {
+		A4B4523F21153F6D005F0680 /* Food Explore */ = {
 			isa = PBXGroup;
 			children = (
 				565FF201212102C5008FD872 /* Assets.xcassets */,
@@ -150,7 +154,7 @@
 				A49D7B84211A76B2008FA922 /* menuVC.swift */,
 				565FF1ED211E5863008FD872 /* HttpRequestClient.swift */,
 			);
-			path = FindFood;
+			path = "Food Explore";
 			sourceTree = "<group>";
 		};
 		A4ECD1F321168733008A4A7C /* Resources */ = {
@@ -179,8 +183,10 @@
 				A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */,
 				A43873B92117E87E007E6142 /* BebasNeue-Regular.ttf */,
 				A43873BB2117E87F007E6142 /* BebasNeue Thin.ttf */,
+				56F07F08212113B0004988C5 /* newLaunchTitle.png */,
 				A4ECD1F42116874F008A4A7C /* MarkerFelt.ttf */,
 				A4ECD1F621168D1A008A4A7C /* fontListt */,
+				56F07F062121119A004988C5 /* ic_launcher.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -197,9 +203,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A4B4523C21153F6D005F0680 /* FindFood */ = {
+		A4B4523C21153F6D005F0680 /* Food Explore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "FindFood" */;
+			buildConfigurationList = A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "Food Explore" */;
 			buildPhases = (
 				6F0617CCCEF7AA7795F01F30 /* [CP] Check Pods Manifest.lock */,
 				A4B4523921153F6D005F0680 /* Sources */,
@@ -212,9 +218,9 @@
 			);
 			dependencies = (
 			);
-			name = FindFood;
+			name = "Food Explore";
 			productName = FoodFinder;
-			productReference = A4B4523D21153F6D005F0680 /* FindFood.app */;
+			productReference = A4B4523D21153F6D005F0680 /* Food Explore.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -232,7 +238,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "FindFood" */;
+			buildConfigurationList = A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "Food Explore" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -245,7 +251,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A4B4523C21153F6D005F0680 /* FindFood */,
+				A4B4523C21153F6D005F0680 /* Food Explore */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +268,7 @@
 				A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */,
 				A4B4524B21153F70005F0680 /* LaunchScreen.storyboard in Resources */,
 				A43873C72117E8CA007E6142 /* Audrey-MediumOblique.otf in Resources */,
+				56F07F09212113B0004988C5 /* newLaunchTitle.png in Resources */,
 				A43873CC2117E8CA007E6142 /* Audrey-Medium.otf in Resources */,
 				565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */,
 				A4B452532115476A005F0680 /* Podfile in Resources */,
@@ -274,6 +281,7 @@
 				565FF1FE2120E4FF008FD872 /* EBGaramond08-Regular.ttf in Resources */,
 				A4B4524621153F6D005F0680 /* Main.storyboard in Resources */,
 				A4ECD1F52116874F008A4A7C /* MarkerFelt.ttf in Resources */,
+				56F07F072121119B004988C5 /* ic_launcher.png in Resources */,
 				565FF1F22120E42B008FD872 /* TRAJANUS.TTF in Resources */,
 				565FF1FA2120E4FF008FD872 /* EBGaramond08-Italic.ttf in Resources */,
 				A43873C02117E87F007E6142 /* BebasNeue Thin.ttf in Resources */,
@@ -449,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -503,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -519,7 +527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LN8HNRS3J;
-				INFOPLIST_FILE = FoodFinder/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FindFood/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,7 +547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LN8HNRS3J;
-				INFOPLIST_FILE = FoodFinder/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FindFood/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,7 +563,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "FindFood" */ = {
+		A4B4523821153F6D005F0680 /* Build configuration list for PBXProject "Food Explore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4B4524D21153F70005F0680 /* Debug */,
@@ -564,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "FindFood" */ = {
+		A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "Food Explore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4B4525021153F70005F0680 /* Debug */,

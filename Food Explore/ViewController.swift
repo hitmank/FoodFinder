@@ -216,6 +216,7 @@ class ViewController: UIViewController, actionDelegate {
                     guard let FoodList = parsedResult else {return}
                     for foodModel in FoodList{
                         let marker = CustomMarker()
+                        marker.icon = GMSMarker.markerImage(with: UIColor.init(red: 234/255.0, green: 99/255.0, blue: 71/255.0, alpha: 1))
                         marker.position = CLLocationCoordinate2D(latitude: foodModel.coordinates.latitude, longitude: foodModel.coordinates.longitude)
                         marker.foodModel = foodModel
                         marker.map = self.mapView

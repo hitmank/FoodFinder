@@ -18,22 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork.png" translatesAutoresizingMaskIntoConstraints="NO" id="JOn-zM-ICp">
-                                <rect key="frame" x="92.666666666666686" y="316" width="190" height="190"/>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher.png" translatesAutoresizingMaskIntoConstraints="NO" id="JOn-zM-ICp">
+                                <rect key="frame" x="91.666666666666686" y="315" width="192" height="192"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="190" id="JGJ-C3-jdf"/>
-                                    <constraint firstAttribute="width" constant="190" id="hEa-bw-2Mv"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="k1k-fT-qlF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="wPm-yN-Czj"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-SC-yAl">
-                                <rect key="frame" x="67.666666666666686" y="201" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newLaunchTitle.png" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-SC-yAl">
+                                <rect key="frame" x="67.666666666666686" y="200" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="Pak-eD-DKH"/>
                                     <constraint firstAttribute="height" constant="128" id="lnQ-9Q-sL9"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.92549019607843142" green="0.39215686274509803" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.91764705882352937" green="0.38901896484151699" blue="0.27682508437350517" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="UnR-SC-yAl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9Yx-Hd-S2N"/>
                             <constraint firstItem="UnR-SC-yAl" firstAttribute="centerX" secondItem="JOn-zM-ICp" secondAttribute="centerX" id="Yjq-Ye-2oo"/>
@@ -45,11 +45,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
+            <point key="canvasLocation" x="50.399999999999999" y="373.89162561576359"/>
         </scene>
     </scenes>
     <resources>
-        <image name="iTunesArtwork.png" width="512" height="512"/>
-        <image name="title.png" width="517" height="207"/>
+        <image name="ic_launcher.png" width="192" height="192"/>
+        <image name="newLaunchTitle.png" width="688" height="312"/>
     </resources>
 </document>

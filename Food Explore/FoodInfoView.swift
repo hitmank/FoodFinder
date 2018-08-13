@@ -79,7 +79,7 @@ class FoodInfoView : UIScrollView{
                 titleView.updateLayout()
             }
             
-            titleView.frame = CGRect.init(x: 0, y: 4, width: self.frame.width , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
+            titleView.frame = CGRect.init(x: 6, y: 4, width: self.frame.width-12 , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
             
             mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
             mainImageView.updateLayout()
@@ -98,7 +98,7 @@ class FoodInfoView : UIScrollView{
                     self.titleView.updateLayout()
                 }
                 
-                self.titleView.frame = CGRect.init(x: 0, y: 4, width: self.frame.width , height: self.titleView.titleLabel.frame.height + self.titleView.descLabel.frame.height + self.titleView.labelOffset )
+                self.titleView.frame = CGRect.init(x: 6, y: 4, width: self.frame.width-12 , height: self.titleView.titleLabel.frame.height + self.titleView.descLabel.frame.height + self.titleView.labelOffset )
                 
                 self.mainImageView.frame = CGRect.init(x: 5.0, y: self.titleView.frame.size.height + self.titleView.frame.origin.y + self.offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
                 self.mainImageView.updateLayout()
@@ -537,6 +537,9 @@ class ReviewView: UIView {
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override func layoutSubviews() {
+        self.reviewTextView.setContentOffset(CGPoint.zero, animated: false)
     }
 //    override func layoutSubviews() {
 //        if !self.subviews.contains(userLabel){
