@@ -78,7 +78,7 @@
 		A4A52E052117C62200A29D92 /* libMaterialComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMaterialComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A52E072117C62200A29D92 /* libMDFInternationalization.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFInternationalization.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A52E092117C62200A29D92 /* libMDFTextAccessibility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDFTextAccessibility.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4B4523D21153F6D005F0680 /* FoodFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B4523D21153F6D005F0680 /* FindFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B4524021153F6D005F0680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4B4524221153F6D005F0680 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A4B4524521153F6D005F0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 			children = (
 				A4ECD1F321168733008A4A7C /* Resources */,
 				A4B452522115476A005F0680 /* Podfile */,
-				A4B4523F21153F6D005F0680 /* FoodFinder */,
+				A4B4523F21153F6D005F0680 /* FindFood */,
 				A4B4523E21153F6D005F0680 /* Products */,
 				D58F7575A0719DFA168EDF8D /* Pods */,
 				07B1B6310F4A725DDE048B91 /* Frameworks */,
@@ -131,12 +131,12 @@
 		A4B4523E21153F6D005F0680 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A4B4523D21153F6D005F0680 /* FoodFinder.app */,
+				A4B4523D21153F6D005F0680 /* FindFood.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A4B4523F21153F6D005F0680 /* FoodFinder */ = {
+		A4B4523F21153F6D005F0680 /* FindFood */ = {
 			isa = PBXGroup;
 			children = (
 				565FF201212102C5008FD872 /* Assets.xcassets */,
@@ -150,7 +150,7 @@
 				A49D7B84211A76B2008FA922 /* menuVC.swift */,
 				565FF1ED211E5863008FD872 /* HttpRequestClient.swift */,
 			);
-			path = FoodFinder;
+			path = FindFood;
 			sourceTree = "<group>";
 		};
 		A4ECD1F321168733008A4A7C /* Resources */ = {
@@ -197,9 +197,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A4B4523C21153F6D005F0680 /* FoodFinder */ = {
+		A4B4523C21153F6D005F0680 /* FindFood */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "FoodFinder" */;
+			buildConfigurationList = A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "FindFood" */;
 			buildPhases = (
 				6F0617CCCEF7AA7795F01F30 /* [CP] Check Pods Manifest.lock */,
 				A4B4523921153F6D005F0680 /* Sources */,
@@ -212,9 +212,9 @@
 			);
 			dependencies = (
 			);
-			name = FoodFinder;
+			name = FindFood;
 			productName = FoodFinder;
-			productReference = A4B4523D21153F6D005F0680 /* FoodFinder.app */;
+			productReference = A4B4523D21153F6D005F0680 /* FindFood.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -245,7 +245,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A4B4523C21153F6D005F0680 /* FoodFinder */,
+				A4B4523C21153F6D005F0680 /* FindFood */,
 			);
 		};
 /* End PBXProject section */
@@ -564,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "FoodFinder" */ = {
+		A4B4524F21153F70005F0680 /* Build configuration list for PBXNativeTarget "FindFood" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4B4525021153F70005F0680 /* Debug */,
