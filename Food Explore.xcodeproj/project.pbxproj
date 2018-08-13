@@ -19,9 +19,9 @@
 		565FF2002120E4FF008FD872 /* EBGaramondSC08-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1F92120E4FF008FD872 /* EBGaramondSC08-Regular.ttf */; };
 		565FF202212102C5008FD872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565FF201212102C5008FD872 /* Assets.xcassets */; };
 		565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20321210454008FD872 /* iTunesArtwork@3x.png */; };
-		565FF20621210A43008FD872 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20521210A43008FD872 /* title.png */; };
 		56F07F072121119B004988C5 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F062121119A004988C5 /* ic_launcher.png */; };
-		56F07F09212113B0004988C5 /* newLaunchTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F08212113B0004988C5 /* newLaunchTitle.png */; };
+		56F07F0B21211AA3004988C5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F0A21211AA3004988C5 /* Default-568h@2x.png */; };
+		56F07F0D21211B76004988C5 /* Final Title.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F0C21211B76004988C5 /* Final Title.png */; };
 		A1A3313164E0F866C678B561 /* Pods_FoodFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */; };
 		A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */; };
 		A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */; };
@@ -61,9 +61,9 @@
 		565FF1F92120E4FF008FD872 /* EBGaramondSC08-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramondSC08-Regular.ttf"; sourceTree = "<group>"; };
 		565FF201212102C5008FD872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		565FF20321210454008FD872 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
-		565FF20521210A43008FD872 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		56F07F062121119A004988C5 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
-		56F07F08212113B0004988C5 /* newLaunchTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newLaunchTitle.png; sourceTree = "<group>"; };
+		56F07F0A21211AA3004988C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		56F07F0C21211B76004988C5 /* Final Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Final Title.png"; sourceTree = "<group>"; };
 		7435D0B3928B51A175F95D72 /* Pods_FoodFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Light.ttf"; sourceTree = "<group>"; };
 		A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.ttf"; sourceTree = "<group>"; };
@@ -123,6 +123,7 @@
 		A4B4523421153F6D005F0680 = {
 			isa = PBXGroup;
 			children = (
+				56F07F0A21211AA3004988C5 /* Default-568h@2x.png */,
 				A4ECD1F321168733008A4A7C /* Resources */,
 				A4B452522115476A005F0680 /* Podfile */,
 				A4B4523F21153F6D005F0680 /* Food Explore */,
@@ -160,7 +161,6 @@
 		A4ECD1F321168733008A4A7C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				565FF20521210A43008FD872 /* title.png */,
 				565FF20321210454008FD872 /* iTunesArtwork@3x.png */,
 				565FF1F32120E4FE008FD872 /* EBGaramond08-Italic.ttf */,
 				565FF1F72120E4FF008FD872 /* EBGaramond08-Regular.ttf */,
@@ -178,12 +178,12 @@
 				A43873C12117E8C9007E6142 /* Audrey-MediumOblique.otf */,
 				A43873C32117E8C9007E6142 /* Audrey-Normal.otf */,
 				A43873C22117E8C9007E6142 /* Audrey-NormalOblique.otf */,
+				56F07F0C21211B76004988C5 /* Final Title.png */,
 				A43873B82117E87E007E6142 /* BebasNeue-Bold.ttf */,
 				A43873BA2117E87E007E6142 /* BebasNeue-Book.ttf */,
 				A43873B72117E87E007E6142 /* BebasNeue-Light.ttf */,
 				A43873B92117E87E007E6142 /* BebasNeue-Regular.ttf */,
 				A43873BB2117E87F007E6142 /* BebasNeue Thin.ttf */,
-				56F07F08212113B0004988C5 /* newLaunchTitle.png */,
 				A4ECD1F42116874F008A4A7C /* MarkerFelt.ttf */,
 				A4ECD1F621168D1A008A4A7C /* fontListt */,
 				56F07F062121119A004988C5 /* ic_launcher.png */,
@@ -264,16 +264,16 @@
 				A43873C92117E8CA007E6142 /* Audrey-Normal.otf in Resources */,
 				565FF1F02120E124008FD872 /* Billabong.ttf in Resources */,
 				A43873CE21181BAA007E6142 /* a96e2fde6aa4a147ff0b96c5fd9e0da9.jpg in Resources */,
+				56F07F0D21211B76004988C5 /* Final Title.png in Resources */,
 				A4ECD1F721168D1A008A4A7C /* fontListt in Resources */,
 				A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */,
 				A4B4524B21153F70005F0680 /* LaunchScreen.storyboard in Resources */,
 				A43873C72117E8CA007E6142 /* Audrey-MediumOblique.otf in Resources */,
-				56F07F09212113B0004988C5 /* newLaunchTitle.png in Resources */,
 				A43873CC2117E8CA007E6142 /* Audrey-Medium.otf in Resources */,
 				565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */,
 				A4B452532115476A005F0680 /* Podfile in Resources */,
 				A43873BF2117E87F007E6142 /* BebasNeue-Book.ttf in Resources */,
-				565FF20621210A43008FD872 /* title.png in Resources */,
+				56F07F0B21211AA3004988C5 /* Default-568h@2x.png in Resources */,
 				A43873C82117E8CA007E6142 /* Audrey-NormalOblique.otf in Resources */,
 				A43873BC2117E87F007E6142 /* BebasNeue-Light.ttf in Resources */,
 				565FF1FB2120E4FF008FD872 /* EBGaramond12-Italic.ttf in Resources */,
@@ -527,13 +527,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LN8HNRS3J;
-				INFOPLIST_FILE = "$(SRCROOT)/FindFood/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Food Explore/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kb.FindFood;
+				PRODUCT_BUNDLE_IDENTIFIER = "kb.Food-Explore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -547,13 +547,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8LN8HNRS3J;
-				INFOPLIST_FILE = "$(SRCROOT)/FindFood/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Food Explore/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kb.FindFood;
+				PRODUCT_BUNDLE_IDENTIFIER = "kb.Food-Explore";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

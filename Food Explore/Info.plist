@@ -27,7 +27,7 @@
 	<key>NSLocationUsageDescription</key>
 	<string>To get your current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Get current location</string>
+	<string>Your current location will be displayed on the map and used to find Restaurants near you.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>EBGaramond12-AllSC.ttf</string>

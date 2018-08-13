@@ -1,6 +1,6 @@
 platform :ios, '10.0'
 source 'https://github.com/CocoaPods/Specs.git'
-target 'FoodFinder' do
+target 'Food Explore' do
     use_frameworks!
     pod 'MaterialComponents/Buttons'
     pod 'MaterialComponents/Buttons+ButtonThemer'

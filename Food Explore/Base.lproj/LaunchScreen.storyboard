@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="wPm-yN-Czj"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newLaunchTitle.png" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-SC-yAl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Final Title.png" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-SC-yAl">
                                 <rect key="frame" x="67.666666666666686" y="200" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="Pak-eD-DKH"/>
@@ -49,7 +49,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Final Title.png" width="423" height="175"/>
         <image name="ic_launcher.png" width="192" height="192"/>
-        <image name="newLaunchTitle.png" width="688" height="312"/>
     </resources>
 </document>
