@@ -20,7 +20,7 @@ struct HttpRequestClient {
                 if let responseToParse = jsonResult as? NSDictionary{
                     let parsedResult = Parser.parseReviewsResponse(responseToParse)
                     guard let detailResult = parsedResult else {return}
-                    self.customer.currentSelectedRestrauntReviews = detailResult
+                    self.customer.currentSelectedRestaurantReviews = detailResult
                 }
             }
             
@@ -36,7 +36,7 @@ struct HttpRequestClient {
                 if let responseToParse = jsonResult as? NSDictionary{
                     let parsedResult = Parser.parseDetailsResult(responseToParse)
                     guard let detailResult = parsedResult else {return}
-                    self.customer.currentSelectedRestrauntDetail = detailResult
+                    self.customer.currentSelectedRestaurantDetail = detailResult
                 }
             }
         })

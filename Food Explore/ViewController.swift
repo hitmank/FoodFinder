@@ -13,12 +13,16 @@ import DCAnimationKit
 import Motion
 import NYTPhotoViewer
 
+/*
+ Constants
+     */
+    
 let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
 let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
 let LATITUDE = "latitude"
 let LONGITUDE = "longitude"
 let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
-let BASE_REQUEST = "https://api.yelp.com/v3/businesses/"
+let BASE_REQUEST = "https://api.yelp.com/v3/buas sinesses/"
 let AUTH_HEADER_KEY = "Authorization"
 let TOP_BUFFER : CGFloat = 20.0
 let GAP : CGFloat = 5.0
@@ -26,55 +30,91 @@ var bgColor : UIColor = UIColor.init(red: 58/255.0, green: 97/255.0, blue: 134/2
 let yelpHeader: HTTPHeaders = [
     AUTH_HEADER_KEY: AUTH_HEADER_VALUE
 ]
+let CORNER_RADIUS = CGFloat.init(10.0)
     
-    
-    
+/*
+     The 2 states that the app can be in:
+     1. Selected: When user has tapped on a restaurant and our map is out of view.
+     2. UnSelected: When Map occupies full screen.
+*/
 enum displayState{
     case selected
     case unselected
 }
     
-    
-    
+/*
+    Custom marker that has reference to the Restaurant that it represents.
+ */
 class CustomMarker :  GMSMarker{
     var foodModel : FoodModel = FoodModel();
 }
-    
-    
-    
     
 class ViewController: UIViewController, actionDelegate {
     
     //MARK: Properties
     @IBOutlet var mapView: GMSMapView!
+    @IBOutlet var infoView: FoodInfoView!
+    
+    /*
+     Map of [RestaurantID : ReviewModel]
+     We fetch the Reviews for a restaurant when we tap on the marker on the map.
+     We store retreived reviews in this map, so that we dont have to fetch again during the same app session.
+     TODO: Maybe store this in CoreData/UserDefaults if the fetch fails/no network.
+         : Should not do this always since we want latest reviews and also the restaurantID's might change?
+     */
     var reviewsMapping : Dictionary<String, [ReviewModel]> = Dictionary<String, [ReviewModel]>()
+    
+    /*
+     Map of [RestaurantID : FoodDetailModel]
+     Similar to the Reviews map. We fetch Detail when user taps on the marker.
+     Similar use case and also potential TODO.
+     */
+    var detailsMapping : Dictionary<String, FoodDetailModel> = Dictionary<String, FoodDetailModel>()
+    //TODO: Merge reviewsMapping and detailsMapping - basically 1 map for a RestaurantID
+    
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
+    
+    /*
+     Default unselected.
+     */
     var state : displayState = .unselected
-    var currentOrientation : UIDeviceOrientation = UIDevice.current.orientation
-    var detailsMapping : Dictionary<String, FoodDetailModel> = Dictionary<String, FoodDetailModel>()
-    var currentSelectedRestrauntID : String = ""
-    var currentSelectedRestrauntDetail : FoodDetailModel? = nil{
+    
+    var currentSelectedRestaurantID : String = ""
+    
+    var currentSelectedRestaurantDetail : FoodDetailModel? = nil{
         didSet{
-            detailsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntDetail
+            detailsMapping[currentSelectedRestaurantID] = currentSelectedRestaurantDetail
         }
     }
-    var currentSelectedRestrauntReviews : [ReviewModel]? = nil{
+    var currentSelectedRestaurantReviews : [ReviewModel]? = nil{
         didSet{
-            reviewsMapping[currentSelectedRestrauntID] = currentSelectedRestrauntReviews
+            reviewsMapping[currentSelectedRestaurantID] = currentSelectedRestaurantReviews
         }
     }
+    
+    /*
+     The View Controller used by the photosDisplay.
+     */
     var photosVC : UIViewController = UIViewController()
-    @IBOutlet var infoView: FoodInfoView!
+    
+    /*
+     The View Controller used by the MenuDisplay.
+     */
+    let m  = MenuVC();
+    
+    /*
+     HTTP Client used for all http requests.
+     */
     var httpClient : HttpRequestClient? = nil
     
-    
-    
+
     //MARK: UIView Methods
     required init?(coder aDecoder: NSCoder) {
         GMSServices.provideAPIKey(API_KEY)
         super.init(coder: aDecoder)
     }
+    
     override func viewWillLayoutSubviews() {
         updateFrame()
     }
@@ -89,16 +129,15 @@ class ViewController: UIViewController, actionDelegate {
         //                print("== \(names)")
         //            }
         //        }
+        
         self.httpClient = HttpRequestClient(customer: self);
         infoView.actionDelegate = self
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-        currentOrientation = UIDevice.current.orientation
         
-        infoView.layer.cornerRadius = 10.0
-        mapView.layer.cornerRadius = 10.0
+        infoView.layer.cornerRadius = CORNER_RADIUS
+        mapView.layer.cornerRadius = CORNER_RADIUS
         
         mapView.isMyLocationEnabled = true
-        locationManager = CLLocationManager()
+    
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
@@ -111,7 +150,6 @@ class ViewController: UIViewController, actionDelegate {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        currentOrientation = UIDevice.current.orientation
         UIView.animate(withDuration: 0.5, animations: {self.updateFrame(size)})
     }
     
@@ -127,7 +165,6 @@ class ViewController: UIViewController, actionDelegate {
         case .selected:
             if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
                 infoView.frame = CGRect.init(x: 10, y: TOP_BUFFER, width: viewSize.width-20, height: viewSize.height-100)
-//                [self.infoView bounceIntoView:self.view direction:DCAnimationDirectionTop];
                 mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y + GAP, width: viewSize.width-20, height: mapView.frame.height)
                 
             }
@@ -169,29 +206,27 @@ class ViewController: UIViewController, actionDelegate {
             
         }
         else{
-            if let _reviews = currentSelectedRestrauntReviews{
+            if let _reviews = currentSelectedRestaurantReviews{
                 infoView.isDisplayingReviews = true
                 self.infoView.displayReviews(_reviews)
             }
         }
     }
-    func didTapMenu1() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    let m  = MenuVC();
+
     func didTapMenu() {
         m.delegate = self
         self.present(m, animated: true, completion: nil)
     }
-    var dataSourcePhto = NYTPhotoViewerArrayDataSource()
+    
     func didTapPhotos(){
-        self.dataSourcePhto = NYTPhotoViewerArrayDataSource.init(photos: currentSelectedRestrauntDetail?.photos)
-        photosVC = NYTPhotosViewController.init(dataSource: self.dataSourcePhto)
+        let dataSourcePhto = NYTPhotoViewerArrayDataSource.init(photos: currentSelectedRestaurantDetail?.photos)
+        photosVC = NYTPhotosViewController.init(dataSource: dataSourcePhto)
         self.present(photosVC, animated: true, completion:nil)
     }
     
+    
     //MapView Tap Methods
-    @objc func didTap(){
+    @objc func didTapMapMarker(){
         if(state == .selected){
             state = .unselected
             UIView.animate(withDuration: 1.0, animations: {
@@ -201,12 +236,11 @@ class ViewController: UIViewController, actionDelegate {
         }
     }
     
-    func showFood(){
+    func showFoodOnMap(){
         let param : Parameters = [
             LATITUDE : self.currentLocation!.coordinate.latitude,
             LONGITUDE : self.currentLocation!.coordinate.longitude
         ]
-        
         
         Alamofire.request(SEARCH_REQUEST, method: .get, parameters: param, encoding: URLEncoding.default , headers: yelpHeader).responseJSON(completionHandler: {response in
             
@@ -245,7 +279,7 @@ extension ViewController: CLLocationManagerDelegate {
         mapView.delegate = self
         self.currentLocation = location
         UIView.animate(withDuration: 0.5, animations: {self.updateFrame()})
-        self.showFood()
+        self.showFoodOnMap()
     }
 
     // Handle authorization for the location manager.
@@ -274,27 +308,27 @@ extension ViewController: CLLocationManagerDelegate {
 
 extension ViewController : GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        didTap()
+        didTapMapMarker()
     }
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let selectedMarker = marker as! CustomMarker
         //populate the infoView
         self.infoView.foodObject = selectedMarker.foodModel
-        currentSelectedRestrauntID = selectedMarker.foodModel.id
+        currentSelectedRestaurantID = selectedMarker.foodModel.id
         //Check if we have the details for the current restraunt. If not, send request for it.
-        if let detail = detailsMapping[currentSelectedRestrauntID]{
-            currentSelectedRestrauntDetail = detail
+        if let detail = detailsMapping[currentSelectedRestaurantID]{
+            currentSelectedRestaurantDetail = detail
         }
         else{
             //send Request
-            self.httpClient?.requestForRestaurantDetails(currentSelectedRestrauntID)
+            self.httpClient?.requestForRestaurantDetails(currentSelectedRestaurantID)
         }
         
-        if let reviews = reviewsMapping[currentSelectedRestrauntID]{
-            currentSelectedRestrauntReviews = reviews
+        if let reviews = reviewsMapping[currentSelectedRestaurantID]{
+            currentSelectedRestaurantReviews = reviews
         }
         else{
-            self.httpClient?.requestForReviews(currentSelectedRestrauntID)
+            self.httpClient?.requestForReviews(currentSelectedRestaurantID)
         }
         
         //Update frame
