@@ -20,6 +20,8 @@ import Motion
 import DCAnimationKit
 
 
+let shadowColor = UIColor.darkGray
+
 class FoodInfoView : UIScrollView{
     var isAnimating = false
     func displayReviews(_ reviews : [ReviewModel]){
@@ -63,6 +65,7 @@ class FoodInfoView : UIScrollView{
                 if let imageData: NSData = NSData.init(contentsOf: URL.init(string: foodObject!.displayURL)!) {
                     mainImageView.currentImage = UIImage(data: imageData as Data)!
                 }
+                mainImageView.delegate = actionDelegate
                 titleView.desc = foodObject!.cuisineType
                 detailView.phoneNumber = foodObject!.phoneNumber
                 detailView.rating = foodObject!.rating.description
@@ -71,53 +74,76 @@ class FoodInfoView : UIScrollView{
         }
     }
     
+    var shouldLayout : Bool = true;
     override func layoutSubviews() {
-        self.reviewDisplayView.clipsToBounds = true
-
-        if(!isAnimating){
-            if(titleView.titleLabel.frame.height == 0){
-                titleView.updateLayout()
-            }
+        
+        if(shouldLayout){
             
-            titleView.frame = CGRect.init(x: 6, y: 4, width: self.frame.width-12 , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
-            
-            mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
-            mainImageView.updateLayout()
-            
-            
-           self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
-            
-            self.addSubview(titleView)
-            self.addSubview(mainImageView)
-            self.addSubview(detailView)
-        }
-        else{
-            UIView.animate(withDuration: 0.8, animations: {
-                
-                if(self.titleView.titleLabel.frame.height == 0){
-                    self.titleView.updateLayout()
+            self.reviewDisplayView.clipsToBounds = true
+            if(!isAnimating){
+                if(titleView.titleLabel.frame.height == 0){
+                    titleView.updateLayout()
                 }
                 
-                self.titleView.frame = CGRect.init(x: 6, y: 4, width: self.frame.width-12 , height: self.titleView.titleLabel.frame.height + self.titleView.descLabel.frame.height + self.titleView.labelOffset )
+                titleView.frame = CGRect.init(x: 6, y: 4, width: self.frame.width-12 , height: titleView.titleLabel.frame.height + titleView.descLabel.frame.height + titleView.labelOffset )
                 
-                self.mainImageView.frame = CGRect.init(x: 5.0, y: self.titleView.frame.size.height + self.titleView.frame.origin.y + self.offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
-                self.mainImageView.updateLayout()
+                mainImageView.frame = CGRect.init(x: 5.0, y: titleView.frame.size.height + titleView.frame.origin.y + offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
+                mainImageView.updateLayout()
                 
                 
-                self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
+               self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
                 
-                self.addSubview(self.titleView)
-                self.addSubview(self.mainImageView)
-                self.addSubview(self.detailView)
-            })
+                self.addSubview(titleView)
+                self.addSubview(mainImageView)
+                self.addSubview(detailView)
+            }
+            else{
+                UIView.animate(withDuration: 0.8, animations: {
+                    
+                    if(self.titleView.titleLabel.frame.height == 0){
+                        self.titleView.updateLayout()
+                    }
+                    
+                    self.titleView.frame = CGRect.init(x: 6, y: 4, width: self.frame.width-12 , height: self.titleView.titleLabel.frame.height + self.titleView.descLabel.frame.height + self.titleView.labelOffset )
+                    
+                    self.mainImageView.frame = CGRect.init(x: 5.0, y: self.titleView.frame.size.height + self.titleView.frame.origin.y + self.offsett_TitleAndMainImage, width: self.frame.width-10.0, height: 0.4*self.frame.height)
+                    self.mainImageView.updateLayout()
+                    
+                    
+                    self.detailView.frame = CGRect.init(x: self.detailView.frame.origin.x, y: self.mainImageView.frame.origin.y + self.mainImageView.frame.height + self.offset_MainImageAndDetail +  self.reviewDisplayView.frame.height, width: self.frame.width-10.0, height: 0.10*self.frame.height)
+                    
+                    self.addSubview(self.titleView)
+                    self.addSubview(self.mainImageView)
+                    self.addSubview(self.detailView)
+                })
+            }
+       
+            self.layer.shadowColor = shadowColor.cgColor
+            self.layer.shadowRadius = 10.0;
+            self.layer.shadowOffset = CGSize(width: 5.0, height: 1.0)
+            self.layer.shadowOpacity = 1.0
         }
+
+    
     }
     
     func animateViews(){
         self.mainImageView.isMotionEnabled = true;
         self.mainImageView.animateView()
     }
-   
+    
+    func reset(){
+        self.removeCurrentAnimations()
+        for subview in self.subviews{
+            subview.removeFromSuperview()
+        }
+        self.foodObject = nil;
+        self.titleView = TitleView()
+        self.detailView = DetailView()
+        self.reviewDisplayView = ReviewDisplayView.init(frame: CGRect.zero, reviewsToDisplay: [])
+        self.mainImageView = ImageViewer.init(frame: CGRect.zero)
+    }
+    
 }
 
 class TitleView : UIView {
@@ -165,10 +191,13 @@ class TitleView : UIView {
         descLabel.center = CGPoint.init(x: self.center.x, y: descLabel.center.y)
     }
     
+    
     override func layoutSubviews() {
         updateLayout()
         self.addSubview(titleLabel)
         self.addSubview(descLabel)
+        
+        
        
     }
 }

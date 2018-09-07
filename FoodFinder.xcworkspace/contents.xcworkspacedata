@@ -8,6 +8,9 @@
       location = "group:/Users/i308941/FoodFinder/Food Explore.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Food Explore.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

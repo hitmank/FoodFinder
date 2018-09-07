@@ -22,7 +22,7 @@ let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W
 let LATITUDE = "latitude"
 let LONGITUDE = "longitude"
 let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
-let BASE_REQUEST = "https://api.yelp.com/v3/buas sinesses/"
+let BASE_REQUEST = "https://api.yelp.com/v3/businesses/"
 let AUTH_HEADER_KEY = "Authorization"
 let TOP_BUFFER : CGFloat = 20.0
 let GAP : CGFloat = 5.0
@@ -165,21 +165,21 @@ class ViewController: UIViewController, actionDelegate {
         case .selected:
             if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
                 infoView.frame = CGRect.init(x: 10, y: TOP_BUFFER, width: viewSize.width-20, height: viewSize.height-100)
-                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y + GAP, width: viewSize.width-20, height: mapView.frame.height)
+                mapView.frame = CGRect.init(x: 0, y: infoView.frame.height + infoView.frame.origin.y + GAP, width: viewSize.width, height: mapView.frame.height)
                 
             }
             else{
                 infoView.frame = CGRect.init(x: 5, y: TOP_BUFFER, width: viewSize.width-10, height: viewSize.height-40)
-                mapView.frame = CGRect.init(x: 10, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width-20, height:mapView.frame.height)
+                mapView.frame = CGRect.init(x: 0, y: infoView.frame.height + infoView.frame.origin.y, width: viewSize.width, height:mapView.frame.height)
             }
             break;
         case .unselected:
             if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
-                mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
+                mapView.frame = CGRect.init(x: 0, y: 0, width: viewSize.width, height: viewSize.height)
                 infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
             }
             else{
-                mapView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: viewSize.height)
+                mapView.frame = CGRect.init(x: 0, y: 0, width: viewSize.width, height: viewSize.height)
                 infoView.frame = CGRect.init(x: 10, y: 0, width: viewSize.width-20, height: 0)
             }
             break;
@@ -218,9 +218,15 @@ class ViewController: UIViewController, actionDelegate {
         self.present(m, animated: true, completion: nil)
     }
     
+    /**
+     We need a strong reference to the datasource for the NYT photos viewer to work properly.
+     Dont want an optional, hence init with a default Value.
+     */
+    var dataSourcePhoto = NYTPhotoViewerArrayDataSource()
+    
     func didTapPhotos(){
-        let dataSourcePhto = NYTPhotoViewerArrayDataSource.init(photos: currentSelectedRestaurantDetail?.photos)
-        photosVC = NYTPhotosViewController.init(dataSource: dataSourcePhto)
+        dataSourcePhoto = NYTPhotoViewerArrayDataSource.init(photos: currentSelectedRestaurantDetail?.photos)
+        photosVC = NYTPhotosViewController.init(dataSource: dataSourcePhoto)
         self.present(photosVC, animated: true, completion:nil)
     }
     
@@ -230,9 +236,10 @@ class ViewController: UIViewController, actionDelegate {
         if(state == .selected){
             state = .unselected
             UIView.animate(withDuration: 1.0, animations: {
-                self.view.backgroundColor = UIColor.lightGray
-                self.infoView.isHidden = true;
-                self.updateFrame()})
+                self.infoView.shouldLayout = false;
+                self.updateFrame()}, completion: { _ in
+                    self.infoView.reset()
+            })
         }
     }
     
@@ -335,9 +342,9 @@ extension ViewController : GMSMapViewDelegate{
         state = .selected
         self.infoView.isHidden = false;
         
-
+        
         UIView.animate(withDuration: 1.0, animations: {
-            self.view.backgroundColor = bgColor
+            self.infoView.shouldLayout = true
             self.updateFrame()
         },completion:{_ in
 
