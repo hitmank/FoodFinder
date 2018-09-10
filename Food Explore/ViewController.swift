@@ -142,6 +142,7 @@ class ViewController: UIViewController, actionDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
+        locationManager.distanceFilter = 100.0
     }
     
     override func didReceiveMemoryWarning() {
@@ -257,7 +258,21 @@ class ViewController: UIViewController, actionDelegate {
                     guard let FoodList = parsedResult else {return}
                     for foodModel in FoodList{
                         let marker = CustomMarker()
-                        marker.icon = GMSMarker.markerImage(with: UIColor.init(red: 234/255.0, green: 99/255.0, blue: 71/255.0, alpha: 1))
+                        if(foodModel.cuisineType == .Pizza){
+                            marker.icon = self.imageWithImage(image: UIImage.init(named: "pizza2")!, scaledToSize: CGSize.init(width: 30.0, height: 30.0))
+                        }
+                        else if(foodModel.cuisineType == .Coffee){
+                            marker.icon = self.imageWithImage(image: UIImage.init(named: "coffee")!, scaledToSize: CGSize.init(width: 35.0, height: 35.0))
+                        }
+                        else if(foodModel.cuisineType == .Bar){
+                            marker.icon = self.imageWithImage(image: UIImage.init(named: "bar")!, scaledToSize: CGSize.init(width: 30.0, height: 30.0))
+                        }
+                        else if(foodModel.cuisineType == .Seafood){
+                            
+                            
+                            marker.icon = self.imageWithImage(image: UIImage.init(named: "seafood")!, scaledToSize: CGSize.init(width: 30.0, height: 30.0))
+                        }
+                        
                         marker.position = CLLocationCoordinate2D(latitude: foodModel.coordinates.latitude, longitude: foodModel.coordinates.longitude)
                         marker.foodModel = foodModel
                         marker.map = self.mapView
@@ -356,6 +371,14 @@ extension ViewController : GMSMapViewDelegate{
         
         
         return true;
+    }
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }
 

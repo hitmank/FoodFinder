@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		563915F72145F84300854900 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 563915F62145F84300854900 /* Assets.xcassets */; };
 		565FF1EE211E5863008FD872 /* HttpRequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565FF1ED211E5863008FD872 /* HttpRequestClient.swift */; };
 		565FF1F02120E124008FD872 /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1EF2120E123008FD872 /* Billabong.ttf */; };
-		565FF202212102C5008FD872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565FF201212102C5008FD872 /* Assets.xcassets */; };
 		565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20321210454008FD872 /* iTunesArtwork@3x.png */; };
 		56F07F072121119B004988C5 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F062121119A004988C5 /* ic_launcher.png */; };
 		56F07F0D21211B76004988C5 /* Final Title.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F07F0C21211B76004988C5 /* Final Title.png */; };
@@ -39,9 +39,9 @@
 
 /* Begin PBXFileReference section */
 		035522093EBE1E84DE1A04E2 /* Pods-FoodFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder.release.xcconfig"; sourceTree = "<group>"; };
+		563915F62145F84300854900 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		565FF1ED211E5863008FD872 /* HttpRequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestClient.swift; sourceTree = "<group>"; };
 		565FF1EF2120E123008FD872 /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Billabong.ttf; sourceTree = "<group>"; };
-		565FF201212102C5008FD872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		565FF20321210454008FD872 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		56F07F062121119A004988C5 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		56F07F0C21211B76004988C5 /* Final Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Final Title.png"; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		A4B4523F21153F6D005F0680 /* Food Explore */ = {
 			isa = PBXGroup;
 			children = (
-				565FF201212102C5008FD872 /* Assets.xcassets */,
+				563915F62145F84300854900 /* Assets.xcassets */,
 				A4B4524021153F6D005F0680 /* AppDelegate.swift */,
 				A4B4524221153F6D005F0680 /* ViewController.swift */,
 				A4B4524421153F6D005F0680 /* Main.storyboard */,
@@ -235,6 +235,7 @@
 				565FF1F02120E124008FD872 /* Billabong.ttf in Resources */,
 				56F07F0D21211B76004988C5 /* Final Title.png in Resources */,
 				A4ECD1F721168D1A008A4A7C /* fontListt in Resources */,
+				563915F72145F84300854900 /* Assets.xcassets in Resources */,
 				A43873BD2117E87F007E6142 /* BebasNeue-Bold.ttf in Resources */,
 				A4B4524B21153F70005F0680 /* LaunchScreen.storyboard in Resources */,
 				A43873C72117E8CA007E6142 /* Audrey-MediumOblique.otf in Resources */,
@@ -250,7 +251,6 @@
 				56F07F072121119B004988C5 /* ic_launcher.png in Resources */,
 				A43873C02117E87F007E6142 /* BebasNeue Thin.ttf in Resources */,
 				A43873CB2117E8CA007E6142 /* Audrey-Bold.otf in Resources */,
-				565FF202212102C5008FD872 /* Assets.xcassets in Resources */,
 				A43873BE2117E87F007E6142 /* BebasNeue-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -66,7 +66,7 @@ class FoodInfoView : UIScrollView{
                     mainImageView.currentImage = UIImage(data: imageData as Data)!
                 }
                 mainImageView.delegate = actionDelegate
-                titleView.desc = foodObject!.cuisineType
+                titleView.desc = foodObject!.cuisineText
                 detailView.phoneNumber = foodObject!.phoneNumber
                 detailView.rating = foodObject!.rating.description
                 detailView.cost = foodObject!.cost

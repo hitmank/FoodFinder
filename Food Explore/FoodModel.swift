@@ -10,13 +10,23 @@ import Foundation
 import CoreLocation
 import NYTPhotoViewer
 
+enum CuisineType {
+    case Pizza
+    case Coffee
+    case Bar
+    case Seafood
+    case Other
+}
+
+
 struct FoodModel {
     var name : String = ""
     var coordinates : CLLocationCoordinate2D = CLLocationCoordinate2D()
     var id : String = ""
     var phoneNumber : String = ""
     var displayURL : String = ""
-    var cuisineType : String = ""
+    var cuisineType : CuisineType = .Other
+    var cuisineText : String = ""
     
     var isClosed : Bool = false
     var rating : Double = 0.0
@@ -78,6 +88,7 @@ class Parser{
                 if let categoryList = currentBusiness.value(forKey: "categories") as? Array<Dictionary<String, String>>{
                     for category in categoryList{
                         if let currCategory = category["title"]{
+                            print(currCategory);
                             if(cuisine == "Cuisine:"){
                                 cuisine = cuisine + " " + currCategory
                             }
@@ -89,7 +100,7 @@ class Parser{
                         
                     }
                 }
-                food.cuisineType = cuisine
+                food.cuisineText = cuisine
                 
                 //Main Image
                 if let mainImageURL = currentBusiness.value(forKey: "image_url") as? String{
@@ -125,6 +136,7 @@ class Parser{
                     food.cost = cost
                 }
                 
+                Parser.classifyCuisine(&food)
                 
                 list.append(food)
             }
@@ -189,5 +201,45 @@ class Parser{
         }
         return reviews
     }
+    
+    static func classifyCuisine(_ model : inout FoodModel) {
+        //Pizza
+        if(model.name.contains("pizza") || model.name.contains("Pizza")){
+            model.cuisineType = .Pizza
+            return
+        }
+        if(model.cuisineText.contains("pizza") || model.cuisineText.contains("Pizza")){
+            model.cuisineType = .Pizza
+            return
+        }
+        //Coffee
+        if(model.name.contains("coffee") || model.name.contains("Coffee") || model.name.contains("cafe") || model.name.contains("Cafe")){
+            model.cuisineType = .Coffee
+            return
+        }
+        if(model.cuisineText.contains("coffee") || model.cuisineText.contains("Coffee") || model.cuisineText.contains("cafe") || model.cuisineText.contains("Cafe")){
+            model.cuisineType = .Coffee
+            return
+        }
+        //Bar
+        if(model.name.contains("bar") || model.name.contains("Bar") || model.name.contains("beer") || model.name.contains("Beer") || model.name.contains("wine") || model.name.contains("Wine") || model.name.contains("drinks") || model.name.contains("Drinks")){
+            model.cuisineType = .Bar
+            return
+        }
+        if(model.cuisineText.contains("bar") || model.cuisineText.contains("Bar") || model.cuisineText.contains("beer") || model.cuisineText.contains("Beer") || model.cuisineText.contains("wine") || model.cuisineText.contains("Wine") || model.cuisineText.contains("drinks") || model.cuisineText.contains("Drinks")){
+            model.cuisineType = .Bar
+            return
+        }
+        //Seafood
+        if(model.name.contains("seafood") || model.name.contains("Seafood") || model.name.contains("fish") || model.name.contains("Fish")){
+            model.cuisineType = .Seafood
+            return
+        }
+        if(model.cuisineText.contains("seafood") || model.cuisineText.contains("Seafood") || model.cuisineText.contains("fish") || model.cuisineText.contains("Fish")){
+            model.cuisineType = .Seafood
+            return
+        }
+    }
+    
     
 }

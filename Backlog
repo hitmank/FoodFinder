@@ -1,0 +1,9 @@
+1. Make the UI look good.
+	a. Make the reviews look better.
+	b. Change the Maps marker 	-> maybe add different markers for different cuisines.
+								-> Use the isOpen prop.
+	
+2. Use google API to get more photos of the restaurant
+3. Have an option on the map to filter restraunts based on cuisine, isOpen 
+4. Tap the phone number to call
+5. Reviews Scroll bug
