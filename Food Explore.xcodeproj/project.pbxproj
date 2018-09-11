@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		563915F72145F84300854900 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 563915F62145F84300854900 /* Assets.xcassets */; };
+		5639160F214881EE00854900 /* FIlterPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639160E214881EE00854900 /* FIlterPanel.swift */; };
 		565FF1EE211E5863008FD872 /* HttpRequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565FF1ED211E5863008FD872 /* HttpRequestClient.swift */; };
 		565FF1F02120E124008FD872 /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 565FF1EF2120E123008FD872 /* Billabong.ttf */; };
 		565FF20421210454008FD872 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565FF20321210454008FD872 /* iTunesArtwork@3x.png */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		035522093EBE1E84DE1A04E2 /* Pods-FoodFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodFinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodFinder/Pods-FoodFinder.release.xcconfig"; sourceTree = "<group>"; };
 		563915F62145F84300854900 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5639160E214881EE00854900 /* FIlterPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIlterPanel.swift; sourceTree = "<group>"; };
 		565FF1ED211E5863008FD872 /* HttpRequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestClient.swift; sourceTree = "<group>"; };
 		565FF1EF2120E123008FD872 /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Billabong.ttf; sourceTree = "<group>"; };
 		565FF20321210454008FD872 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				A4ECD1F121166825008A4A7C /* FoodInfoView.swift */,
 				A49D7B84211A76B2008FA922 /* menuVC.swift */,
 				565FF1ED211E5863008FD872 /* HttpRequestClient.swift */,
+				5639160E214881EE00854900 /* FIlterPanel.swift */,
 			);
 			path = "Food Explore";
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				A49D7B85211A76B2008FA922 /* menuVC.swift in Sources */,
 				A4ECD1F221166825008A4A7C /* FoodInfoView.swift in Sources */,
 				565FF1EE211E5863008FD872 /* HttpRequestClient.swift in Sources */,
+				5639160F214881EE00854900 /* FIlterPanel.swift in Sources */,
 				A4ECD1F02116587F008A4A7C /* FoodModel.swift in Sources */,
 				A4B4524321153F6D005F0680 /* ViewController.swift in Sources */,
 				A4B4524121153F6D005F0680 /* AppDelegate.swift in Sources */,

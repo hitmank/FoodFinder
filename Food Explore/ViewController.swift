@@ -17,20 +17,21 @@ import NYTPhotoViewer
  Constants
      */
     
-let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
-let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
-let LATITUDE = "latitude"
-let LONGITUDE = "longitude"
-let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
-let BASE_REQUEST = "https://api.yelp.com/v3/businesses/"
-let AUTH_HEADER_KEY = "Authorization"
-let TOP_BUFFER : CGFloat = 20.0
-let GAP : CGFloat = 5.0
-var bgColor : UIColor = UIColor.init(red: 58/255.0, green: 97/255.0, blue: 134/255.0, alpha: 1)
-let yelpHeader: HTTPHeaders = [
-    AUTH_HEADER_KEY: AUTH_HEADER_VALUE
-]
-let CORNER_RADIUS = CGFloat.init(10.0)
+    let API_KEY = "AIzaSyC07x8Hf43hr5eVhY2DjcLb9GQWN0A8h2s"
+    let AUTH_HEADER_VALUE = "Bearer aoH0X7ew0xQCsT-eZme66wHKkjr_pRIVmXXwB6al-UiHE-4W8Xz_lQTS9dNiFZgTuqb7KkIkKJCWEERysUGtsogiok87OjHA0LP1K-9TbzzUxXAicclOg7KYm_hlW3Yx"
+    let LATITUDE = "latitude"
+    let LONGITUDE = "longitude"
+    let SEARCH_REQUEST = "https://api.yelp.com/v3/businesses/search"
+    let BASE_REQUEST = "https://api.yelp.com/v3/businesses/"
+    let AUTH_HEADER_KEY = "Authorization"
+    let TOP_BUFFER : CGFloat = 20.0
+    let GAP : CGFloat = 5.0
+    var bgColor : UIColor = UIColor.init(red: 171/255.0, green: 208/255.0, blue: 240/255.0, alpha: 1)
+    let yelpHeader: HTTPHeaders = [
+        AUTH_HEADER_KEY: AUTH_HEADER_VALUE
+    ]
+    let CORNER_RADIUS = CGFloat.init(10.0)
+    let filterButton : UIButton = UIButton.init()
     
 /*
      The 2 states that the app can be in:
@@ -143,8 +144,44 @@ class ViewController: UIViewController, actionDelegate {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         locationManager.distanceFilter = 100.0
+        
+        addFilterButton()
+    
+    }
+    //TODO: implement animated removal
+    func removeFilterButton(_ animated: Bool){
+        if(animated){
+           filterButton.removeFromSuperview()
+        }
+        else{
+            filterButton.removeFromSuperview()
+        }
     }
     
+    func addFilterButton(){
+        removeFilterButton(false)
+        filterButton.setTitle("Filter", for: .normal)
+        filterButton.titleLabel?.font = UIFont.init(name: "Cochin-Bold", size: 20)
+        filterButton.setTitleColor(UIColor.orange, for: .normal)
+        filterButton.sizeToFit()
+        filterButton.frame = CGRect.init(x: (self.mapView.frame.origin.x + self.mapView.frame.width) - 80, y: self.mapView.frame.origin.y + 60, width: filterButton.frame.width + 15.0, height: filterButton.frame.height  )
+        filterButton.layer.borderColor = UIColor.lightGray.cgColor
+        filterButton.backgroundColor = bgColor
+        filterButton.layer.borderWidth = 1.0
+        filterButton.layer.cornerRadius = 5.0
+        filterButton.clipsToBounds = true
+        
+        filterButton.addTarget(self, action: #selector(showFilterPanel), for: .touchUpInside)
+        
+        self.mapView.addSubview(filterButton)
+    }
+    var filterPanel : FilterPanel = FilterPanel()
+    @objc func showFilterPanel(){
+        filterPanel.removeFromSuperview()
+        filterPanel.frame = CGRect.init(x: 0, y: 200, width: 300, height: 300);
+        filterPanel.center = self.mapView.center
+        self.view.addSubview(filterPanel)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -162,6 +199,7 @@ class ViewController: UIViewController, actionDelegate {
             viewSize = size!
         }
     
+        removeFilterButton(true)
         switch state {
         case .selected:
             if currentOrientationStatus == .portrait || currentOrientationStatus == .portraitUpsideDown{
@@ -185,6 +223,7 @@ class ViewController: UIViewController, actionDelegate {
             }
             break;
         }
+        addFilterButton()
     }
     
     //MARK: InfoView Tap Delegate Methods
