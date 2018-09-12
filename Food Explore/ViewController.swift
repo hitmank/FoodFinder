@@ -35,6 +35,9 @@ import NYTPhotoViewer
     let filterButtonBGColor : UIColor = UIColor.init(red: 28/255.0, green: 146/255.0, blue: 210/255.0, alpha: 1)
     let filterButtonTitleColor : UIColor = UIColor.white
     var filterOptionsBeingDisplayed = false
+    var filteringByIsOpen = false
+    var filteringByCuisine = false
+    var filteringByPrice = false
     /*
      Main filter button
      */
@@ -223,6 +226,7 @@ class ViewController: UIViewController, actionDelegate {
             filterIsOpenButton.alpha = 0.0
             filterIsOpenButton.frame = filterButton.frame
             filterIsOpenButton.sizeToFit()
+            filterIsOpenButton.addTarget(self, action: #selector(applyIsOpenFilter), for: .touchUpInside)
             self.mapView.addSubview(filterIsOpenButton)
             
             //Filter by cuisine
@@ -237,6 +241,7 @@ class ViewController: UIViewController, actionDelegate {
             filterCuisineButton.alpha = 0.0
             filterCuisineButton.frame = filterButton.frame
             filterCuisineButton.sizeToFit()
+            filterCuisineButton.addTarget(self, action: #selector(applyCuisineFilter), for: .touchUpInside)
             self.mapView.addSubview(filterCuisineButton)
             
             //Filter by price
@@ -251,6 +256,7 @@ class ViewController: UIViewController, actionDelegate {
             filterPriceButton.alpha = 0.0
             filterPriceButton.frame = filterButton.frame
             filterPriceButton.sizeToFit()
+            filterPriceButton.addTarget(self, action: #selector(applyPriceFilter), for: .touchUpInside)
             self.mapView.addSubview(filterPriceButton)
             
             UIView.animate(withDuration: 0.5, animations: {
@@ -266,6 +272,72 @@ class ViewController: UIViewController, actionDelegate {
             }, completion: {_ in filterOptionsBeingDisplayed = true})
         }
         
+    }
+    
+    func resetFilters(){
+        for marker in markerList {
+            marker.map = self.mapView
+        }
+        filterIsOpenButton.isEnabled = true
+        filterCuisineButton.isEnabled = true
+        filterPriceButton.isEnabled = true
+        
+        filterIsOpenButton.backgroundColor = filterButtonBGColor
+        filterCuisineButton.backgroundColor = filterButtonBGColor
+        filterPriceButton.backgroundColor = filterButtonBGColor
+        
+        filterIsOpenButton.alpha = 1.0
+        filterCuisineButton.alpha = 1.0
+        filterPriceButton.alpha = 1.0
+        
+    }
+    @objc func applyIsOpenFilter(){
+        resetFilters()
+        if(!filteringByIsOpen){
+            for marker in markerList {
+                if(marker.foodModel.isClosed == true){
+                    marker.map = nil
+                }
+            }
+            filteringByIsOpen = true
+            filterCuisineButton.backgroundColor = UIColor.gray
+            filterPriceButton.backgroundColor = UIColor.gray
+            filterCuisineButton.alpha = 0.5
+            filterPriceButton.alpha = 0.5
+        }
+        else{
+            filteringByIsOpen = false
+        }
+    }
+    
+    @objc func applyCuisineFilter(){
+        resetFilters()
+        if(!filteringByCuisine){
+            filterIsOpenButton.backgroundColor = UIColor.gray
+            filterPriceButton.backgroundColor = UIColor.gray
+            filterIsOpenButton.alpha = 0.5
+            filterPriceButton.alpha = 0.5
+            filteringByCuisine = true
+        }
+        else{
+            filteringByCuisine = false
+        }
+    }
+    func showPriceFilterPanel(){
+        
+    }
+    @objc func applyPriceFilter(){
+        resetFilters()
+        if(!filteringByPrice){
+            filterIsOpenButton.backgroundColor = UIColor.gray
+            filterCuisineButton.backgroundColor = UIColor.gray
+            filterIsOpenButton.alpha = 0.5
+            filterCuisineButton.alpha = 0.5
+            showPriceFilterPanel()
+        }
+        else{
+            filteringByPrice = false
+        }
     }
     
     func removeFilterOptions(){
@@ -377,6 +449,7 @@ class ViewController: UIViewController, actionDelegate {
             })
         }
     }
+    var markerList : [CustomMarker] = []
     
     func showFoodOnMap(){
         let param : Parameters = [
@@ -406,10 +479,10 @@ class ViewController: UIViewController, actionDelegate {
                             
                             marker.icon = self.imageWithImage(image: UIImage.init(named: "seafood")!, scaledToSize: CGSize.init(width: 30.0, height: 30.0))
                         }
-                        
                         marker.position = CLLocationCoordinate2D(latitude: foodModel.coordinates.latitude, longitude: foodModel.coordinates.longitude)
                         marker.foodModel = foodModel
                         marker.map = self.mapView
+                        self.markerList.append(marker)
                     }
                 }
             }
