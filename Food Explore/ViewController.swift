@@ -31,7 +31,29 @@ import NYTPhotoViewer
         AUTH_HEADER_KEY: AUTH_HEADER_VALUE
     ]
     let CORNER_RADIUS = CGFloat.init(10.0)
+    
+    let filterButtonBGColor : UIColor = UIColor.init(red: 28/255.0, green: 146/255.0, blue: 210/255.0, alpha: 1)
+    let filterButtonTitleColor : UIColor = UIColor.white
+    var filterOptionsBeingDisplayed = false
+    /*
+     Main filter button
+     */
     let filterButton : UIButton = UIButton.init()
+    
+    /*
+     Filter isOpen button
+     */
+    let filterIsOpenButton : UIButton = UIButton.init()
+    
+    /*
+     Filter Cuisine Button
+     */
+    let filterCuisineButton : UIButton = UIButton.init()
+    
+    /*
+     Filter Price Button
+     */
+    let filterPriceButton : UIButton = UIButton.init()
     
 /*
      The 2 states that the app can be in:
@@ -109,6 +131,11 @@ class ViewController: UIViewController, actionDelegate {
      */
     var httpClient : HttpRequestClient? = nil
     
+    /*
+     Filter Panel to display options to filters.
+     Generic - so can be used for filter by cuisine and others.
+     */
+    var filterPanel : FilterPanel = FilterPanel()
 
     //MARK: UIView Methods
     required init?(coder aDecoder: NSCoder) {
@@ -156,32 +183,100 @@ class ViewController: UIViewController, actionDelegate {
         else{
             filterButton.removeFromSuperview()
         }
+        removeFilterOptions()
     }
     
     func addFilterButton(){
         removeFilterButton(false)
         filterButton.setTitle("Filter", for: .normal)
         filterButton.titleLabel?.font = UIFont.init(name: "Cochin-Bold", size: 20)
-        filterButton.setTitleColor(UIColor.orange, for: .normal)
+        filterButton.setTitleColor(filterButtonTitleColor, for: .normal)
         filterButton.sizeToFit()
         filterButton.frame = CGRect.init(x: (self.mapView.frame.origin.x + self.mapView.frame.width) - 80, y: self.mapView.frame.origin.y + 60, width: filterButton.frame.width + 15.0, height: filterButton.frame.height  )
         filterButton.layer.borderColor = UIColor.lightGray.cgColor
-        filterButton.backgroundColor = bgColor
+        filterButton.backgroundColor = filterButtonBGColor
         filterButton.layer.borderWidth = 1.0
         filterButton.layer.cornerRadius = 5.0
         filterButton.clipsToBounds = true
         
-        filterButton.addTarget(self, action: #selector(showFilterPanel), for: .touchUpInside)
+        filterButton.addTarget(self, action: #selector(showFilterOptions), for: .touchUpInside)
         
         self.mapView.addSubview(filterButton)
+        filterButton.isExclusiveTouch = true
     }
-    var filterPanel : FilterPanel = FilterPanel()
-    @objc func showFilterPanel(){
-        filterPanel.removeFromSuperview()
-        filterPanel.frame = CGRect.init(x: 0, y: 200, width: 300, height: 300);
-        filterPanel.center = self.mapView.center
-        self.view.addSubview(filterPanel)
+    
+    @objc func showFilterOptions(){
+        
+        if(filterOptionsBeingDisplayed){
+            removeFilterOptions()
+        }
+        else{
+            //Filter by isOpen
+            filterIsOpenButton.setTitle("Is Open", for: .normal)
+            filterIsOpenButton.titleLabel?.font = UIFont.init(name: "Cochin-Bold", size: 20)
+            filterIsOpenButton.setTitleColor(filterButtonTitleColor, for: .normal)
+            filterIsOpenButton.layer.borderColor = UIColor.lightGray.cgColor
+            filterIsOpenButton.backgroundColor = filterButtonBGColor
+            filterIsOpenButton.layer.borderWidth = 1.0
+            filterIsOpenButton.layer.cornerRadius = 5.0
+            filterIsOpenButton.clipsToBounds = true
+            filterIsOpenButton.alpha = 0.0
+            filterIsOpenButton.frame = filterButton.frame
+            filterIsOpenButton.sizeToFit()
+            self.mapView.addSubview(filterIsOpenButton)
+            
+            //Filter by cuisine
+            filterCuisineButton.setTitle("Cuisine", for: .normal)
+            filterCuisineButton.titleLabel?.font = UIFont.init(name: "Cochin-Bold", size: 20)
+            filterCuisineButton.setTitleColor(filterButtonTitleColor, for: .normal)
+            filterCuisineButton.layer.borderColor = UIColor.lightGray.cgColor
+            filterCuisineButton.backgroundColor = filterButtonBGColor
+            filterCuisineButton.layer.borderWidth = 1.0
+            filterCuisineButton.layer.cornerRadius = 5.0
+            filterCuisineButton.clipsToBounds = true
+            filterCuisineButton.alpha = 0.0
+            filterCuisineButton.frame = filterButton.frame
+            filterCuisineButton.sizeToFit()
+            self.mapView.addSubview(filterCuisineButton)
+            
+            //Filter by price
+            filterPriceButton.setTitle("Price", for: .normal)
+            filterPriceButton.titleLabel?.font = UIFont.init(name: "Cochin-Bold", size: 20)
+            filterPriceButton.setTitleColor(filterButtonTitleColor, for: .normal)
+            filterPriceButton.layer.borderColor = UIColor.lightGray.cgColor
+            filterPriceButton.backgroundColor = filterButtonBGColor
+            filterPriceButton.layer.borderWidth = 1.0
+            filterPriceButton.layer.cornerRadius = 5.0
+            filterPriceButton.clipsToBounds = true
+            filterPriceButton.alpha = 0.0
+            filterPriceButton.frame = filterButton.frame
+            filterPriceButton.sizeToFit()
+            self.mapView.addSubview(filterPriceButton)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                filterIsOpenButton.alpha = 1.0
+                filterIsOpenButton.frame = CGRect.init(x: filterButton.frame.origin.x - 110, y: filterButton.frame.origin.y - 20, width: filterIsOpenButton.frame.width + 15.0, height: filterIsOpenButton.frame.height)
+                
+                filterCuisineButton.alpha = 1.0
+                filterCuisineButton.frame = CGRect.init(x: filterButton.frame.origin.x - 95, y: filterIsOpenButton.frame.origin.y + filterIsOpenButton.frame.height + 20, width: filterCuisineButton.frame.width + 15.0, height: filterCuisineButton.frame.height)
+                
+                filterPriceButton.alpha = 1.0
+                filterPriceButton.frame = CGRect.init(x: filterButton.frame.origin.x - 55, y: filterCuisineButton.frame.origin.y + filterCuisineButton.frame.height + 20, width: filterPriceButton.frame.width + 15.0, height: filterPriceButton.frame.height)
+                
+            }, completion: {_ in filterOptionsBeingDisplayed = true})
+        }
+        
     }
+    
+    func removeFilterOptions(){
+        if(filterOptionsBeingDisplayed){
+            filterIsOpenButton.removeFromSuperview()
+            filterCuisineButton.removeFromSuperview()
+            filterPriceButton.removeFromSuperview()
+            filterOptionsBeingDisplayed = false
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
