@@ -27,6 +27,7 @@ struct FoodModel {
     var displayURL : String = ""
     var cuisineType : CuisineType = .Other
     var cuisineText : String = ""
+    var cuisineDisplayText : String = ""
     
     var isClosed : Bool = false
     var rating : Double = 0.0
@@ -85,15 +86,18 @@ class Parser{
                 
                 //Cuisine
                 var cuisine = "Cuisine:"
+                var rawCuisine = ""
                 if let categoryList = currentBusiness.value(forKey: "categories") as? Array<Dictionary<String, String>>{
                     for category in categoryList{
                         if let currCategory = category["title"]{
                             print(currCategory);
                             if(cuisine == "Cuisine:"){
                                 cuisine = cuisine + " " + currCategory
+                                rawCuisine += currCategory
                             }
                             else{
                                 cuisine = cuisine + " ," + currCategory
+                                rawCuisine += ", " + currCategory
                             }
                             
                         }
@@ -101,6 +105,7 @@ class Parser{
                     }
                 }
                 food.cuisineText = cuisine
+                food.cuisineDisplayText = rawCuisine
                 
                 //Main Image
                 if let mainImageURL = currentBusiness.value(forKey: "image_url") as? String{

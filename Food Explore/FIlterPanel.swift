@@ -9,24 +9,42 @@
 import Foundation
 import UIKit
 
-class FilterPanel: UIView {
+class FilterPanel: UITableView, UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cuisine_list.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = dequeueReusableCell(withIdentifier: "cell")
+        if(cell == nil){
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
+        }
+        
+        cell?.textLabel?.text = cuisine_list[indexPath.row]
+        cell?.backgroundColor = UIColor.lightGray
+        return cell!
+    }
+    
     var cuisine_list : [String] = []
     var subTableView : UITableView = UITableView.init()
     var isOpen = false
     let headerLabel : UILabel = UILabel.init()
     let isOpenLabel : UILabel = UILabel.init()
     let cuisineLabel : UILabel = UILabel.init()
-    
     override func layoutSubviews() {
-        headerLabel.frame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: 100)
-        headerLabel.text = "Filter By:"
-        isOpenLabel.frame = CGRect.init(x: 0, y:headerLabel.frame.origin.y + headerLabel.frame.height , width: self.frame.width, height: 100)
-        isOpenLabel.text = "Is open right now"
-        cuisineLabel.frame = CGRect.init(x: 0, y: isOpenLabel.frame.origin.y + isOpenLabel.frame.height, width: self.frame.width, height: 100)
-        cuisineLabel.text = "Cuisine"
-        
-        self.addSubview(headerLabel)
-        self.addSubview(isOpenLabel)
-        self.addSubview(cuisineLabel)
+        super.layoutSubviews()
+        self.backgroundColor = UIColor.lightGray
+        self.layer.cornerRadius = 10.0
+        self.clipsToBounds = true
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.insert
+    }
+    
+    
 }

@@ -32,31 +32,7 @@ import NYTPhotoViewer
     ]
     let CORNER_RADIUS = CGFloat.init(10.0)
     
-    let filterButtonBGColor : UIColor = UIColor.init(red: 28/255.0, green: 146/255.0, blue: 210/255.0, alpha: 1)
-    let filterButtonTitleColor : UIColor = UIColor.white
-    var filterOptionsBeingDisplayed = false
-    var filteringByIsOpen = false
-    var filteringByCuisine = false
-    var filteringByPrice = false
-    /*
-     Main filter button
-     */
-    let filterButton : UIButton = UIButton.init()
     
-    /*
-     Filter isOpen button
-     */
-    let filterIsOpenButton : UIButton = UIButton.init()
-    
-    /*
-     Filter Cuisine Button
-     */
-    let filterCuisineButton : UIButton = UIButton.init()
-    
-    /*
-     Filter Price Button
-     */
-    let filterPriceButton : UIButton = UIButton.init()
     
 /*
      The 2 states that the app can be in:
@@ -140,6 +116,38 @@ class ViewController: UIViewController, actionDelegate {
      */
     var filterPanel : FilterPanel = FilterPanel()
 
+    let filterButtonBGColor : UIColor = UIColor.init(red: 28/255.0, green: 146/255.0, blue: 210/255.0, alpha: 1)
+    let filterButtonTitleColor : UIColor = UIColor.white
+    var filterOptionsBeingDisplayed = false
+    var filteringByIsOpen = false
+    var filteringByCuisine = false
+    var filteringByPrice = false
+    /*
+     Main filter button
+     */
+    let filterButton : UIButton = UIButton.init()
+    
+    /*
+     Filter isOpen button
+     */
+    let filterIsOpenButton : UIButton = UIButton.init()
+    
+    /*
+     Filter Cuisine Button
+     */
+    let filterCuisineButton : UIButton = UIButton.init()
+    
+    /*
+     Filter Price Button
+     */
+    let filterPriceButton : UIButton = UIButton.init()
+    
+    /*
+     Cuisine types being displayed on the map
+     */
+    var all_cuisines : [String] = []
+    
+    
     //MARK: UIView Methods
     required init?(coder aDecoder: NSCoder) {
         GMSServices.provideAPIKey(API_KEY)
@@ -260,16 +268,16 @@ class ViewController: UIViewController, actionDelegate {
             self.mapView.addSubview(filterPriceButton)
             
             UIView.animate(withDuration: 0.5, animations: {
-                filterIsOpenButton.alpha = 1.0
-                filterIsOpenButton.frame = CGRect.init(x: filterButton.frame.origin.x - 110, y: filterButton.frame.origin.y - 20, width: filterIsOpenButton.frame.width + 15.0, height: filterIsOpenButton.frame.height)
+                self.filterIsOpenButton.alpha = 1.0
+                self.filterIsOpenButton.frame = CGRect.init(x: self.filterButton.frame.origin.x - 110, y: self.filterButton.frame.origin.y - 20, width: self.filterIsOpenButton.frame.width + 15.0, height: self.filterIsOpenButton.frame.height)
                 
-                filterCuisineButton.alpha = 1.0
-                filterCuisineButton.frame = CGRect.init(x: filterButton.frame.origin.x - 95, y: filterIsOpenButton.frame.origin.y + filterIsOpenButton.frame.height + 20, width: filterCuisineButton.frame.width + 15.0, height: filterCuisineButton.frame.height)
+                self.filterCuisineButton.alpha = 1.0
+                self.filterCuisineButton.frame = CGRect.init(x: self.filterButton.frame.origin.x - 95, y: self.filterIsOpenButton.frame.origin.y + self.filterIsOpenButton.frame.height + 20, width: self.filterCuisineButton.frame.width + 15.0, height: self.filterCuisineButton.frame.height)
                 
-                filterPriceButton.alpha = 1.0
-                filterPriceButton.frame = CGRect.init(x: filterButton.frame.origin.x - 55, y: filterCuisineButton.frame.origin.y + filterCuisineButton.frame.height + 20, width: filterPriceButton.frame.width + 15.0, height: filterPriceButton.frame.height)
+                self.filterPriceButton.alpha = 1.0
+                self.filterPriceButton.frame = CGRect.init(x: self.filterButton.frame.origin.x - 55, y: self.filterCuisineButton.frame.origin.y + self.filterCuisineButton.frame.height + 20, width: self.filterPriceButton.frame.width + 15.0, height: self.filterPriceButton.frame.height)
                 
-            }, completion: {_ in filterOptionsBeingDisplayed = true})
+            }, completion: {_ in self.filterOptionsBeingDisplayed = true})
         }
         
     }
@@ -289,6 +297,8 @@ class ViewController: UIViewController, actionDelegate {
         filterIsOpenButton.alpha = 1.0
         filterCuisineButton.alpha = 1.0
         filterPriceButton.alpha = 1.0
+        
+        filterPanel.removeFromSuperview()
         
     }
     @objc func applyIsOpenFilter(){
@@ -318,12 +328,44 @@ class ViewController: UIViewController, actionDelegate {
             filterIsOpenButton.alpha = 0.5
             filterPriceButton.alpha = 0.5
             filteringByCuisine = true
+            
+            filterPanel.delegate = filterPanel
+            filterPanel.dataSource = filterPanel
+            filterPanel.cuisine_list = all_cuisines
+            filterPanel.frame = filterCuisineButton.frame
+            self.mapView.addSubview(filterPanel);
+            filterPanel.reloadData()
+            var height  = 400
+            if(all_cuisines.count*44 < height){
+                height = all_cuisines.count
+            }
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.filterPanel.frame = CGRect.init(x: self.filterCuisineButton.frame.origin.x - 180, y: self.filterCuisineButton.frame.origin.y + self.filterCuisineButton.frame.height + 5.0, width: 200, height: CGFloat.init(height) );
+            })
+            
+            
+            
+//            filterPanel.reloadData()
+            
         }
         else{
             filteringByCuisine = false
         }
     }
     func showPriceFilterPanel(){
+        filterPanel.delegate = filterPanel
+        filterPanel.dataSource = filterPanel
+        filterPanel.cuisine_list = ["⭐️☆☆☆☆", "⭐️⭐️☆☆☆", "⭐️⭐️⭐️☆☆", "⭐️⭐️⭐️⭐️☆" ,"⭐️⭐️⭐️⭐️⭐️"]
+        filterPanel.frame = filterPriceButton.frame
+        self.mapView.addSubview(filterPanel)
+        filterPanel.reloadData()
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            self.filterPanel.frame = CGRect.init(x: self.filterPriceButton.frame.origin.x - 40, y: self.filterPriceButton.frame.origin.y + self.filterPriceButton.frame.height + 10, width: 150, height: 240)
+            
+        })
         
     }
     @objc func applyPriceFilter(){
@@ -334,6 +376,8 @@ class ViewController: UIViewController, actionDelegate {
             filterIsOpenButton.alpha = 0.5
             filterCuisineButton.alpha = 0.5
             showPriceFilterPanel()
+            filteringByPrice = true
+            
         }
         else{
             filteringByPrice = false
@@ -342,6 +386,7 @@ class ViewController: UIViewController, actionDelegate {
     
     func removeFilterOptions(){
         if(filterOptionsBeingDisplayed){
+            resetFilters()
             filterIsOpenButton.removeFromSuperview()
             filterCuisineButton.removeFromSuperview()
             filterPriceButton.removeFromSuperview()
@@ -479,6 +524,7 @@ class ViewController: UIViewController, actionDelegate {
                             
                             marker.icon = self.imageWithImage(image: UIImage.init(named: "seafood")!, scaledToSize: CGSize.init(width: 30.0, height: 30.0))
                         }
+                        self.all_cuisines.append(foodModel.cuisineDisplayText)
                         marker.position = CLLocationCoordinate2D(latitude: foodModel.coordinates.latitude, longitude: foodModel.coordinates.longitude)
                         marker.foodModel = foodModel
                         marker.map = self.mapView
