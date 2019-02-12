@@ -34,10 +34,10 @@ import NYTPhotoViewer
     
     
     
-/*
-     The 2 states that the app can be in:
-     1. Selected: When user has tapped on a restaurant and our map is out of view.
-     2. UnSelected: When Map occupies full screen.
+/**
+     *  The 2 states that the app can be in:
+     *  1. Selected: When user has tapped on a restaurant and our map is out of view.
+     *  2. UnSelected: When Map occupies full screen.
 */
 enum displayState{
     case selected
@@ -115,6 +115,7 @@ class ViewController: UIViewController, actionDelegate {
      Generic - so can be used for filter by cuisine and others.
      */
     var filterPanel : FilterPanel = FilterPanel()
+    filterPanel.selectionDelegate = self
 
     let filterButtonBGColor : UIColor = UIColor.init(red: 28/255.0, green: 146/255.0, blue: 210/255.0, alpha: 1)
     let filterButtonTitleColor : UIColor = UIColor.white
@@ -331,8 +332,9 @@ class ViewController: UIViewController, actionDelegate {
             
             filterPanel.delegate = filterPanel
             filterPanel.dataSource = filterPanel
-            filterPanel.cuisine_list = all_cuisines
+            filterPanel.filter_items = all_cuisines
             filterPanel.frame = filterCuisineButton.frame
+            filterPanel.currentFilterType = .Cuisine
             self.mapView.addSubview(filterPanel);
             filterPanel.reloadData()
             var height  = 400
@@ -343,23 +345,21 @@ class ViewController: UIViewController, actionDelegate {
             UIView.animate(withDuration: 0.5, animations: {
                 self.filterPanel.frame = CGRect.init(x: self.filterCuisineButton.frame.origin.x - 180, y: self.filterCuisineButton.frame.origin.y + self.filterCuisineButton.frame.height + 5.0, width: 200, height: CGFloat.init(height) );
             })
-            
-            
-            
-//            filterPanel.reloadData()
-            
         }
         else{
             filteringByCuisine = false
         }
     }
+    
     func showPriceFilterPanel(){
         filterPanel.delegate = filterPanel
         filterPanel.dataSource = filterPanel
-        filterPanel.cuisine_list = ["⭐️☆☆☆☆", "⭐️⭐️☆☆☆", "⭐️⭐️⭐️☆☆", "⭐️⭐️⭐️⭐️☆" ,"⭐️⭐️⭐️⭐️⭐️"]
+        filterPanel.filter_items = ["⭐️☆☆☆☆", "⭐️⭐️☆☆☆", "⭐️⭐️⭐️☆☆", "⭐️⭐️⭐️⭐️☆" ,"⭐️⭐️⭐️⭐️⭐️"]
         filterPanel.frame = filterPriceButton.frame
         self.mapView.addSubview(filterPanel)
         filterPanel.reloadData()
+        filterPanel.allowsMultipleSelection = true;
+        filterPanel.currentFilterType = .Price
         
         UIView.animate(withDuration: 0.5, animations: {
             
@@ -392,11 +392,6 @@ class ViewController: UIViewController, actionDelegate {
             filterPriceButton.removeFromSuperview()
             filterOptionsBeingDisplayed = false
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -632,6 +627,18 @@ extension ViewController : GMSMapViewDelegate{
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return newImage
+    }
+}
+    
+extension ViewController : filterSelectionDelegate{
+    
+    func didSelectFilterItem(item: String, of type: FilterType) {
+        
+    }
+    
+    func didDeSelectFilterItem(item: String, of type: FilterType) {
+        
+        
     }
 }
 

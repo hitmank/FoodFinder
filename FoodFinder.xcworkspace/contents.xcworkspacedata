@@ -5,9 +5,6 @@
       location = "group:cardiff.gpx">
    </FileRef>
    <FileRef
-      location = "group:/Users/i308941/FoodFinder/Food Explore.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Food Explore.xcodeproj">
    </FileRef>
    <FileRef

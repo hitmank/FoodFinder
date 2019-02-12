@@ -17,3 +17,4 @@ The upcoming features are in the backlog file.
 3. Have an option on the map to filter restraunts based on cuisine, isOpen 
 4. Tap the phone number to call
 5. Reviews Scroll bug
+6. Add a legend for icon types
